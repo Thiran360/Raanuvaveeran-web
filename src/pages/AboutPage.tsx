@@ -130,8 +130,8 @@ export default function AboutPage() {
           </div>
           <div className={`relative ${storyInView ? 'animate-fade-right' : 'opacity-0'}`}>
             <img
-              src="/raanu.png"
-              alt="Students learning"
+              src="/about-hero.jpg"
+              alt="Academy Director"
               className="rounded-2xl shadow-2xl w-full h-auto object-contain"
             />
             <div className="absolute -bottom-4 sm:-bottom-6 -right-4 sm:-right-6 bg-white rounded-2xl p-4 sm:p-6 shadow-xl">
@@ -220,12 +220,12 @@ export default function AboutPage() {
             </div>
             <div className={`bg-white rounded-2xl p-4 sm:p-6 shadow-lg ${impactInView ? 'animate-fade-up' : 'opacity-0'}`}
               style={{ animationDelay: impactInView ? '0.1s' : '0s' }}>
-              <div className="text-3xl sm:text-4xl font-bold text-blue-500 mb-2">40+</div>
+              <div className="text-3xl sm:text-4xl font-bold text-blue-500 mb-2">15+</div>
               <div className="text-sm sm:text-base text-gray-600 font-medium">{t('countriesReached')}</div>
             </div>
             <div className={`bg-white rounded-2xl p-4 sm:p-6 shadow-lg ${impactInView ? 'animate-fade-up' : 'opacity-0'}`}
               style={{ animationDelay: impactInView ? '0.2s' : '0s' }}>
-              <div className="text-3xl sm:text-4xl font-bold text-green-500 mb-2">95%</div>
+              <div className="text-3xl sm:text-4xl font-bold text-green-500 mb-2">98%</div>
               <div className="text-sm sm:text-base text-gray-600 font-medium">{t('successRate')}</div>
             </div>
             <div className={`bg-white rounded-2xl p-4 sm:p-6 shadow-lg ${impactInView ? 'animate-fade-up' : 'opacity-0'}`}
@@ -241,7 +241,7 @@ export default function AboutPage() {
           <h2 className={`text-3xl sm:text-4xl font-bold text-gray-900 mb-8 sm:mb-12 text-center ${featuresInView ? 'animate-fade-down' : 'opacity-0'}`}>
             {t('learningFeaturesTitle')}
           </h2>
-          <div className="grid md:grid-cols-2 gap-6 sm:gap-8">
+          <div className="grid md:grid-cols-3 gap-6 sm:gap-8">
             <div className={`bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-6 sm:p-8 ${featuresInView ? 'animate-fade-left' : 'opacity-0'}`}>
               <div className="flex items-start gap-4">
                 <div className="flex-shrink-0 w-12 h-12 sm:w-16 sm:h-16 bg-purple-500 rounded-xl flex items-center justify-center">
@@ -286,20 +286,7 @@ export default function AboutPage() {
               </div>
             </div>
 
-            <div className={`bg-gradient-to-br from-orange-50 to-yellow-50 rounded-2xl p-6 sm:p-8 ${featuresInView ? 'animate-fade-right' : 'opacity-0'}`}
-              style={{ animationDelay: featuresInView ? '0.3s' : '0s' }}>
-              <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 w-12 h-12 sm:w-16 sm:h-16 bg-orange-500 rounded-xl flex items-center justify-center">
-                  <Sparkles className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
-                </div>
-                <div>
-                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2 sm:mb-3 break-words">{t('featurePathTitle')}</h3>
-                  <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
-                    {t('featurePathDesc')}
-                  </p>
-                </div>
-              </div>
-            </div>
+
           </div>
         </div>
 

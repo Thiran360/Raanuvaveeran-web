@@ -8,8 +8,8 @@ const getContactMethods = (t: any) => [
     icon: Mail,
     title: t('emailUsTitle'),
     description: t('emailUsDesc'),
-    value: 'info@raanuvaveeran.com',
-    link: 'mailto:raanuvaveeranhindiacademy666@gmail.com',
+    value: 'info@gmail.com',
+    link: 'mailto:info@gmail.com',
     color: 'bg-orange-100',
     iconColor: 'text-orange-500'
   },
@@ -17,8 +17,8 @@ const getContactMethods = (t: any) => [
     icon: Phone,
     title: t('callUsTitle'),
     description: t('callUsDesc'),
-    value: '+91 6397255377',
-    link: 'tel:+916397255377',
+    value: '+91 63972 55377 / +91 70108 17113',
+    link: 'tel:+917010817113',
     color: 'bg-blue-100',
     iconColor: 'text-blue-500'
   },
@@ -71,22 +71,22 @@ const getOfficeLocations = (t: any) => [
   {
     city: t('locCity1'),
     address: t('locAddress1'),
-    phone: '+91 63972 55377',
-    email: 'raanuvaveeranhindiacademy666@gmail.com',
+    phone: '+91 63972 55377 / +91 70108 17113',
+    email: 'info@gmail.com',
     hours: t('locHours')
   },
   {
     city: t('locCity2'),
     address: t('locAddress2'),
     phone: '+91 98765 43211',
-    email: 'raanuvaveeranhindiacademy666@gmail.com',
+    email: 'info@gmail.com',
     hours: t('locHours')
   },
   {
     city: t('locCity3'),
     address: t('locAddress3'),
     phone: '+91 98765 43212',
-    email: 'raanuvaveeranhindiacademy666@gmail.com',
+    email: 'info@gmail.com',
     hours: t('locHours')
   }
 ];
@@ -346,7 +346,7 @@ export default function ContactPage() {
                 {submitStatus.message && (
                   <div className={`mb-6 p-4 rounded-lg flex items-start gap-3 ${submitStatus.type === 'success' ? 'bg-green-50 text-green-700' : 'bg-red-50 text-red-700'}`}>
                     {submitStatus.type === 'success' ? <Check className="w-5 h-5 mt-0.5" /> : <AlertCircle className="w-5 h-5 mt-0.5" />}
-                    <p>{t(submitStatus.message)}</p>
+                    <p>{t(submitStatus.message as any)}</p>
                   </div>
                 )}
 
@@ -547,10 +547,10 @@ export default function ContactPage() {
                     {t('immediateHelpDesc')}
                   </p>
                   <a
-                    href="tel:+916397255377"
+                    href="tel:+917010817113"
                     className="inline-block bg-white text-orange-600 px-6 py-3 rounded-lg font-bold hover:bg-orange-50 transition-colors text-sm sm:text-base"
                   >
-                    {t('callNowBtn')}: +91 6397 255 377
+                    {t('callNowBtn')}: +91 6397 255 377 / +91 70108 17113
                   </a>
                 </div>
               </AnimatedSection>
@@ -600,15 +600,15 @@ export default function ContactPage() {
 
           <div className="grid md:grid-cols-3 gap-6 sm:gap-8">
             {officeLocations.map((location, index) => (
-              <AnimatedSection key={index} direction={index === 0 ? 'left' : index === 1 ? 'up' : 'right'}>
-                <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-xl transition-all">
+              <AnimatedSection key={index} direction={index === 0 ? 'left' : index === 1 ? 'up' : 'right'} className="h-full">
+                <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-xl transition-all h-full flex flex-col">
                   <div className="flex items-center gap-3 mb-4">
                     <div className="bg-orange-500 p-2 rounded-lg">
                       <MapPin className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                     </div>
                     <h3 className="text-xl sm:text-2xl font-bold text-gray-900">{location.city}</h3>
                   </div>
-                  <div className="space-y-3 text-sm sm:text-base text-gray-600">
+                  <div className="space-y-3 text-sm sm:text-base text-gray-600 mb-6">
                     <p className="flex items-start gap-2">
                       <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400 flex-shrink-0 mt-1" />
                       {location.address}
@@ -626,7 +626,7 @@ export default function ContactPage() {
                       {location.hours}
                     </p>
                   </div>
-                  <button className="w-full mt-6 bg-orange-500 text-white py-3 rounded-lg font-semibold hover:bg-orange-600 transition-colors text-sm sm:text-base">
+                  <button className="w-full mt-auto bg-orange-500 text-white py-3 rounded-lg font-semibold hover:bg-orange-600 transition-colors text-sm sm:text-base">
                     {t('getDirectionsBtn')}
                   </button>
                 </div>

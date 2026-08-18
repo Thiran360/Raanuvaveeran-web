@@ -20,12 +20,12 @@ interface IntentMatch {
 // ─── Knowledge Base ──────────────────────────────────────────────
 const knowledgeBase = {
   courses: {
-    overview: `📚 **Our 48-Hour Hindi Mastery Program**\n\nThe course is divided into 3 comprehensive modules:\n\n🟢 **Module 1 — Foundation & Basics** (बुनियादी हिंदी)\n16 hours • 32 videos • Devanagari script, pronunciation, 500+ words, basic grammar\n\n🟠 **Module 2 — Conversational Skills** (बातचीत और व्याकरण)\n16 hours • 32 videos • Daily conversations, verb conjugations, tenses, common phrases\n\n🟣 **Module 3 — Advanced & Professional** (उन्नत हिंदी)\n16 hours • 32 videos • Complex grammar, business communication, writing, literature\n\nEach module ends with a 50-question test (60 min, 70% to pass).`,
-    module1: `🟢 **Module 1: Foundation & Basics** (बुनियादी हिंदी)\n\n⏱ Duration: 16 Hours • 32 Videos\n\nTopics covered:\n• Devanagari Script (वर्णमाला)\n• Vowels & Consonants (स्वर और व्यंजन)\n• Basic Pronunciation Rules\n• Numbers & Counting (गिनती)\n• Days, Months & Time\n• Essential Vocabulary (500+ words)\n• Simple Sentence Formation\n• Basic Grammar Structures\n\n📝 Test: 50 questions • 60 minutes • 70% to pass`,
-    module2: `🟠 **Module 2: Conversational Skills** (बातचीत और व्याकरण)\n\n⏱ Duration: 16 Hours • 32 Videos\n\nTopics covered:\n• Daily Conversations\n• Verb Conjugations (क्रिया)\n• Tenses (Past, Present, Future)\n• Question Formation\n• Common Phrases & Idioms\n• Family & Relationships\n• Shopping & Dining\n• Travel & Directions\n\n📝 Test: 50 questions • 60 minutes • 70% to pass`,
-    module3: `🟣 **Module 3: Advanced & Professional** (उन्नत हिंदी)\n\n⏱ Duration: 16 Hours • 32 Videos\n\nTopics covered:\n• Complex Grammar Structures\n• Formal & Informal Speech\n• Business Communication\n• Writing Skills (लेखन)\n• Reading Comprehension\n• Cultural Context & Etiquette\n• News & Media Language\n• Literature Basics\n\n📝 Test: 50 questions • 60 minutes • 70% to pass`,
+    overview: `📚 **Our 48-Hour Hindi Mastery Program**\n\nThe course is divided into 3 comprehensive modules:\n\n🟢 **Module 1 — Foundation & Basics** (बुनियादी हिंदी)\n16 hours • 30 videos • Devanagari script, pronunciation, 500+ words, basic grammar\n\n🟠 **Module 2 — Conversational Skills** (बातचीत और व्याकरण)\n16 hours • 30 videos • Daily conversations, verb conjugations, tenses, common phrases\n\n🟣 **Module 3 — Advanced & Professional** (उन्नत हिंदी)\n16 hours • 30 videos • Complex grammar, business communication, writing, literature\n\nEach module ends with a 50-question test (60 min, 70% to pass).`,
+    module1: `🟢 **Module 1: Foundation & Basics** (बुनियादी हिंदी)\n\n⏱ Duration: 16 Hours • 30 Videos\n\nTopics covered:\n• Devanagari Script (वर्णमाला)\n• Vowels & Consonants (स्वर और व्यंजन)\n• Basic Pronunciation Rules\n• Numbers & Counting (गिनती)\n• Days, Months & Time\n• Essential Vocabulary (500+ words)\n• Simple Sentence Formation\n• Basic Grammar Structures\n\n📝 Test: 50 questions • 60 minutes • 70% to pass`,
+    module2: `🟠 **Module 2: Conversational Skills** (बातचीत और व्याकरण)\n\n⏱ Duration: 16 Hours • 30 Videos\n\nTopics covered:\n• Daily Conversations\n• Verb Conjugations (क्रिया)\n• Tenses (Past, Present, Future)\n• Question Formation\n• Common Phrases & Idioms\n• Family & Relationships\n• Shopping & Dining\n• Travel & Directions\n\n📝 Test: 50 questions • 60 minutes • 70% to pass`,
+    module3: `🟣 **Module 3: Advanced & Professional** (उन्नत हिंदी)\n\n⏱ Duration: 16 Hours • 30 Videos\n\nTopics covered:\n• Complex Grammar Structures\n• Formal & Informal Speech\n• Business Communication\n• Writing Skills (लेखन)\n• Reading Comprehension\n• Cultural Context & Etiquette\n• News & Media Language\n• Literature Basics\n\n📝 Test: 50 questions • 60 minutes • 70% to pass`,
     liveClass: `🎥 **Live Classes**\n\nWe offer interactive live sessions with instructors! When a live class is active, you'll see the "LIVE NOW" badge on the Courses page.\n\nTo join:\n1. Go to the Courses page\n2. Copy the meeting link shown\n3. Paste it in the join box\n4. Click "Join Class"\n\nLive sessions help you practice conversation and get real-time feedback from native Hindi speakers.`,
-    certificate: `🏆 **Certification**\n\nYes! You receive a verified completion certificate after finishing all 3 modules and passing their tests.\n\nRequirements:\n• Complete all 96 videos across 3 modules\n• Pass each module test with 70% or higher\n• Certificate is recognized and shareable`,
+    certificate: `🏆 **Certification**\n\nYes! You receive a verified completion certificate after finishing all 3 modules and passing their tests.\n\nRequirements:\n• Complete all 90 videos across 3 modules\n• Pass each module test with 70% or higher\n• Certificate is recognized and shareable`,
   },
 
   enrollment: {
@@ -35,19 +35,19 @@ const knowledgeBase = {
 
   pricing: {
     info: `💰 **Pricing Information**\n\nWe offer affordable plans for everyone. Visit our Courses page or Contact us for detailed pricing.\n\n✅ 7-day money-back guarantee\n✅ Lifetime access to course materials\n✅ All payment methods accepted: Credit/Debit cards, UPI, Net Banking, PayPal, Google Pay, Paytm\n\nNot sure? Start with a free demo first!`,
-    refund: `💸 **Refund Policy**\n\nWe offer a **7-day money-back guarantee**. If you're not satisfied with the course within the first 7 days, we'll provide a full refund — no questions asked.\n\nTo request a refund:\n📧 Email: raanuvaveeranhindiacademy666@gmail.com\n📞 Call: +91 6397 255 377`,
+    refund: `💸 **Refund Policy**\n\nWe offer a **7-day money-back guarantee**. If you're not satisfied with the course within the first 7 days, we'll provide a full refund — no questions asked.\n\nTo request a refund:\n📧 Email: info@gmail.com\n📞 Call: +91 6397 255 377`,
   },
 
   support: {
-    contact: `📞 **Contact Information**\n\n📧 Email: info@raanuvaveeran.com\n📞 Phone: +91 6397 255 377\n📍 Main Office: Tamil Nadu, India\n\n🕘 Office Hours:\nMonday - Friday: 9:00 AM - 6:00 PM\nSaturday: 10:00 AM - 4:00 PM\nSunday: Closed\n\n⚡ Average response time: Less than 2 hours!`,
-    offices: `📍 **Our Office Locations**\n\n🏢 **Tamil Nadu (HQ)**\n22, Sri Angalamman Illam, Krishnasamy Street, near Zeon Cinema, Vandipettai, Gobichettipalayam - 638476\n\n🏢 **Mumbai**\n456 Bandra West, Mumbai - 400050\n\n🏢 **Bangalore**\n789 Koramangala, Bangalore - 560034\n\nAll offices: Mon-Sat, 9AM-6PM`,
-    technical: `🔧 **Technical Support**\n\nHaving technical issues? Here are some common fixes:\n\n• **Video not playing?** Check your internet connection and try refreshing the page\n• **Can't login?** Clear your browser cache or try a different browser\n• **Audio issues?** Check your device volume and browser audio permissions\n• **App not loading?** Make sure JavaScript is enabled\n\nStill stuck? Contact us:\n📧 raanuvaveeranhindiacademy666@gmail.com\n📞 +91 6397 255 377`,
+    contact: `📞 **Contact Information**\n\n📧 Email: info@gmail.com\n📞 Phone: +91 6397 255 377\n📍 Main Office: 22, Krishnasamy Street, near Zeon Cinema, Vandipettai, Gobichettipalayam - 638476\n\n🕘 Office Hours:\nMonday - Friday: 9:00 AM - 6:00 PM\nSaturday: 10:00 AM - 4:00 PM\nSunday: Closed\n\n⚡ Average response time: Less than 2 hours!`,
+    offices: `📍 **Our Office Locations**\n\n🏢 **Tamil Nadu (HQ)**\n22, Krishnasamy Street, near Zeon Cinema, Vandipettai, Gobichettipalayam - 638476\n\n🏢 **Mumbai**\n456 Bandra West, Mumbai - 400050\n\n🏢 **Bangalore**\n789 Koramangala, Bangalore - 560034\n\nAll offices: Mon-Sat, 9AM-6PM`,
+    technical: `🔧 **Technical Support**\n\nHaving technical issues? Here are some common fixes:\n\n• **Video not playing?** Check your internet connection and try refreshing the page\n• **Can't login?** Clear your browser cache or try a different browser\n• **Audio issues?** Check your device volume and browser audio permissions\n• **App not loading?** Make sure JavaScript is enabled\n\nStill stuck? Contact us:\n📧 info@gmail.com\n📞 +91 6397 255 377`,
   },
 
   company: {
-    about: `🏫 **About Raanuva Veeran Hindi Academy**\n\nFounded in 2020, we're India's leading online Hindi learning platform.\n\n📊 Our Impact:\n• 50,000+ students enrolled\n• 40+ countries reached\n• 95% success rate\n• 4.9/5 average rating\n\n🎯 Mission: To make quality Hindi education accessible, affordable, and effective for everyone worldwide.\n\n🌍 Vision: To become the world's most trusted platform for learning Hindi.`,
+    about: `🏫 **About Raanuva Veeran Hindi Academy**\n\nFounded in 2022, we're India's leading online Hindi learning platform.\n\n📊 Our Impact:\n• 50,000+ students enrolled\n• 40+ state and countries reached\n• 95% success rate\n• 4.9/5 average rating\n\n🎯 Mission: To make quality Hindi education accessible, affordable, and effective for everyone worldwide.\n\n🌍 Vision: To become the world's most trusted platform for learning Hindi.`,
     teachers: `👨‍🏫 **Our Teaching Team**\n\nAll our teachers are:\n• Certified native Hindi speakers\n• Experienced educators with years of teaching\n• Passionate about sharing Hindi language & culture\n• Available for one-on-one tutoring sessions\n\nThey use simple, engaging methods to make learning fun and effective. Weekly live practice sessions with instructors are included!`,
-    features: `✨ **Platform Features**\n\n🎥 Interactive Video Lessons — HD quality with subtitles\n💬 Live Practice Sessions — Weekly with instructors\n📖 Study Materials — PDFs, flashcards, worksheets, audio files\n🤖 Personalized Learning Path — Adapts to your progress\n📱 Learn Anywhere — Works on phone, tablet, and computer\n📥 Offline Access — Download lessons for offline study\n🔓 Sequential Learning — Unlock videos progressively\n🏆 Certification — Verified completion certificate`,
+    features: `✨ **Platform Features**\n\n🎥 Interactive Video Lessons — HD quality with subtitles\n💬 Live Practice Sessions — Weekly with instructors\n📖 Study Materials — PDFs, flashcards, worksheets, audio files\n🤖 Personalized Learning Path — Adapts to your progress\n📱 Learn Anywhere — Works on phone, tablet, and computer\n📥 Offline Access — Printed studies\n🔓 Sequential Learning — Unlock videos progressively\n🏆 Certification — Verified completion certificate`,
   },
 
   faqs: [
@@ -55,7 +55,7 @@ const knowledgeBase = {
     { q: 'What payment methods do you accept?', a: 'We accept all major credit cards, debit cards, UPI, net banking, and popular digital wallets like PayPal, Google Pay, and Paytm.' },
     { q: "Can I get a refund if I'm not satisfied?", a: "Yes! We offer a 7-day money-back guarantee. If you're not satisfied with the course within the first 7 days, we'll provide a full refund." },
     { q: 'Do you offer one-on-one tutoring?', a: 'Absolutely! We offer personalized one-on-one sessions with our expert teachers. Contact us to schedule a session that fits your availability.' },
-    { q: 'How long does it take to learn Hindi?', a: 'The learning timeline varies based on your dedication and starting level. Typically, students achieve conversational fluency in 6-12 months with consistent practice.' },
+    { q: 'How long does it take to learn Hindi?', a: 'The learning timeline varies based on your dedication and starting level. Typically, students achieve conversational fluency in 3 to 6 months with consistent practice.' },
     { q: 'Are the courses suitable for complete beginners?', a: 'Yes! We have specially designed courses for absolute beginners. Our teachers use simple methods to make learning easy and enjoyable.' },
   ],
 };
@@ -129,7 +129,7 @@ const intentPatterns: { keywords: string[]; intent: string; response: string; qu
   {
     keywords: ['video', 'videos', 'how many', 'hours', 'duration', 'long', 'time', '48 hour', '48-hour', 'length'],
     intent: 'duration',
-    response: `⏱ **Course Duration**\n\nThe full program is 48 hours of video content:\n• Module 1: 16 hours (32 videos)\n• Module 2: 16 hours (32 videos)\n• Module 3: 16 hours (32 videos)\n\nTotal: 96 videos across 3 modules!\n\nVideos unlock sequentially — complete one to unlock the next. Learn at your own pace with lifetime access.`,
+    response: `⏱ **Course Duration**\n\nThe full program is 48 hours of video content:\n• Module 1: 16 hours (30 videos)\n• Module 2: 16 hours (30 videos)\n• Module 3: 16 hours (30 videos)\n\nTotal: 90 videos across 3 modules!\n\nVideos unlock sequentially — complete one to unlock the next. Learn at your own pace with lifetime access.`,
     quickReplies: ['📚 Course Details', '📝 How to Enroll', '💰 Pricing'],
   },
   // Tests
@@ -231,7 +231,7 @@ const intentPatterns: { keywords: string[]; intent: string; response: string; qu
   {
     keywords: ['tutor', 'tutoring', 'private session', 'personal', 'one on one', '1-on-1', 'individual'],
     intent: 'faq_tutoring',
-    response: `👨‍🏫 **One-on-One Tutoring**\n\n${knowledgeBase.faqs[3].a}\n\n📞 Call: +91 6397 255 377\n📧 Email: raanuvaveeranhindiacademy666@gmail.com`,
+    response: `👨‍🏫 **One-on-One Tutoring**\n\n${knowledgeBase.faqs[3].a}\n\n📞 Call: +91 6397 255 377\n📧 Email: info@gmail.com`,
     quickReplies: ['📞 Schedule Session', '📚 Course Overview', '💰 Pricing'],
   },
   {
@@ -282,13 +282,13 @@ const getPageGreeting = (): { message: string; quickReplies: string[] } => {
   }
   if (path.includes('/about')) {
     return {
-      message: `You're on the **About** page! 🏫\n\nLearning about us? Here's a quick snapshot:\n• Founded in 2020\n• 50K+ happy students\n• 40+ countries\n• 4.9/5 rating\n\nWant to know more?`,
+      message: `You're on the **About** page! 🏫\n\nLearning about us?\nHere's a quick snapshot:\n• Founded in 2022\n• 50K+ happy students\n• 40+ state and countries\n• 4.9/5 rating\n\nWant to know more?`,
       quickReplies: ['👨‍🏫 Our Teachers', '✨ Features', '📚 Courses', '📞 Contact'],
     };
   }
   if (path.includes('/contact')) {
     return {
-      message: `You're on the **Contact** page! 📞\n\nNeed to reach us? I can help right here, or you can:\n\n📧 Email: info@raanuvaveeran.com\n📞 Call: +91 6397 255 377\n\nOr ask me anything — I might have the answer!`,
+      message: `You're on the **Contact** page! 📞\n\nNeed to reach us? I can help right here, or you can:\n\n📧 Email: info@gmail.com\n📞 Call: +91 6397 255 377\n\nOr ask me anything — I might have the answer!`,
       quickReplies: ['📍 Office Locations', '🔧 Technical Help', '❓ FAQs', '📝 Give Feedback'],
     };
   }
@@ -333,14 +333,14 @@ const findBestResponse = (input: string): IntentMatch => {
   if (['average', '😐 average'].some(k => normalizedInput.includes(k))) {
     return {
       intent: 'feedback_response', confidence: 1,
-      response: `Thank you for your honest feedback! 🙏\n\nWe want to do better. Could you tell us what we can improve?\n\n📧 Email your suggestions to: raanuvaveeranhindiacademy666@gmail.com\n📞 Or call: +91 6397 255 377\n\nYour input helps us grow!`,
+      response: `Thank you for your honest feedback! 🙏\n\nWe want to do better. Could you tell us what we can improve?\n\n📧 Email your suggestions to: info@gmail.com\n📞 Or call: +91 6397 255 377\n\nYour input helps us grow!`,
       quickReplies: ['📧 Email Feedback', '📞 Call Us', '📚 Courses'],
     };
   }
   if (['needs improvement', '😞 needs improvement', 'bad', 'poor', 'terrible', 'worst', 'disappointed'].some(k => normalizedInput.includes(k))) {
     return {
       intent: 'feedback_response', confidence: 1,
-      response: `We're sorry to hear that. 😔 Your experience matters a lot to us.\n\nPlease share the details of your concern so we can make it right:\n\n📧 Email: raanuvaveeranhindiacademy666@gmail.com\n📞 Call: +91 6397 255 377\n\nOur support team will personally address your feedback within 24 hours.`,
+      response: `We're sorry to hear that. 😔 Your experience matters a lot to us.\n\nPlease share the details of your concern so we can make it right:\n\n📧 Email: info@gmail.com\n📞 Call: +91 6397 255 377\n\nOur support team will personally address your feedback within 24 hours.`,
       quickReplies: ['📧 Email Support', '📞 Call Support', '💸 Refund Policy'],
     };
   }

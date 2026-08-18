@@ -2,7 +2,7 @@ import {
   Engineer, Site, Worker, Advance
 } from "../types";
 
-const API_BASE = "https://api.codingboss.in/military";
+const API_BASE = "https://concise-egomaniac-starved.ngrok-free.dev/military";
 
 export const MANPOWER_ENDPOINTS = {
   engineers: `${API_BASE}/owners/`,

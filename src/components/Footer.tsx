@@ -92,7 +92,7 @@ export default function Footer() {
   return (
     <footer className="bg-gray-900 text-white relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
           <div>
             <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-orange-400 to-red-400 bg-clip-text text-transparent">
               {t('footerTitle')}
@@ -126,13 +126,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div>
-            <h4 className="font-bold text-lg mb-4">{t('resources')}</h4>
-            <ul className="space-y-2">
-              <li><Link to="/blog" className="text-gray-400 hover:text-orange-400 transition-colors">{t('blog')}</Link></li>
-              <li><Link to="/contact" className="text-gray-400 hover:text-orange-400 transition-colors">{t('contact')}</Link></li>
-            </ul>
-          </div>
+
 
           <div>
             <h4 className="font-bold text-lg mb-4">{t('contactUs')}</h4>
@@ -140,7 +134,7 @@ export default function Footer() {
               <li className="flex items-center gap-2 text-gray-400">
                 <Mail className="w-5 h-5 text-orange-400" />
                 <a
-                  href="https://mail.google.com/mail/?view=cm&fs=1&to=raanuvaveeranhindiacademy666@gmail.com"
+                  href="https://mail.google.com/mail/?view=cm&fs=1&to=info@gmail.com"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-orange-400 transition-colors"
@@ -151,16 +145,26 @@ export default function Footer() {
 
               <li className="flex items-center gap-2 text-gray-400">
                 <Phone className="w-5 h-5 text-orange-400" />
-                <a href="tel:06397255377" className="hover:text-orange-400 transition-colors">
-                  06397 255 377
+                <a href="tel:07010817113" className="hover:text-orange-400 transition-colors">
+                  06397 255 377 / 070108 17113
                 </a>
               </li>
               <li className="flex items-center gap-2 text-gray-400">
                 <MapPin className="w-5 h-5 text-orange-400" />
                 <span>
-                  22, Sri Angalamman Illam, Krishnasamy Street,<br />
-                  near Zeon Cinema, Vandipettai,<br />
-                  Gobichettipalayam, Tamil Nadu 638476
+                  {language === 'ta' ? (
+                    <>
+                      பஸ் நிலையம் அருகில்,<br />
+                      முத்துஷா வீதி பின்புறம்,<br />
+                      வண்டிப்பேட்டை, கோபி - 638 452
+                    </>
+                  ) : (
+                    <>
+                      Near Bus Stand,<br />
+                      Behind Muthusha Street,<br />
+                      Vandipettai, Gobi - 638 452
+                    </>
+                  )}
                 </span>
               </li>
             </ul>

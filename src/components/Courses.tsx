@@ -26,7 +26,7 @@ const getCourses = (t: any): Course[] => [
     title: t('course4Title'),
     description: t('course4Desc'),
     level: t('beginner'),
-    duration: t('weeks8'),
+    duration: t('weeks12'),
     lessons: 37,
     students: "15,000+",
     rating: 4.9,
@@ -129,7 +129,7 @@ export default function Courses({ onOpenModal }: CoursesProps) {
       onClick={() => onOpenModal("certificate")}
       className="bg-white text-orange-600 px-8 py-4 rounded-full font-bold text-lg hover:bg-orange-50 transition-all transform hover:scale-105"
     >
-      {t('learnHere')}
+      {t('getCertificateModal')}
     </button>
   </div>
 </motion.div>
@@ -413,7 +413,10 @@ function ParallaxCourseCard({
                 <PlayCircle className="w-4 h-4" />
                 <span>{course.lessons} {t('lessons')}</span>
               </div>
-              <div className="flex items-center gap-1">
+              <div 
+                className="flex items-center gap-1 cursor-pointer hover:text-purple-600 transition-colors"
+                onClick={() => onOpenModal("knowledge")}
+              >
                 <Award className="w-4 h-4" />
                 <span>{t('knowledge')}</span>
               </div>

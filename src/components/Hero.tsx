@@ -153,7 +153,7 @@ export default function Hero({ onOpenModal }: HeroProps) {
                   </button>
 
                   <button
-                    onClick={() => onOpenModal("demo")}
+                    onClick={() => navigate("/courses?demo=true")}
                     className="px-8 py-4 rounded-full font-bold text-lg border-2 border-indigo-400/30 bg-indigo-950/50 backdrop-blur
                       hover:bg-indigo-900/50 hover:border-cyan-400/50 text-indigo-100 transition flex items-center gap-3 justify-center"
                   >
@@ -186,7 +186,7 @@ export default function Hero({ onOpenModal }: HeroProps) {
 
             {/* RIGHT IMAGE - With Slider and Glow Effect */}
             <AnimatedSection direction="right" delay={400}>
-              <div className="relative group perspective-1000 h-[300px] sm:h-[400px] md:h-[500px]">
+              <div className="relative group perspective-1000 w-full max-w-[500px] aspect-square mx-auto">
                 {/* Behind glow */}
                 <div className="absolute -inset-4 bg-gradient-to-r from-purple-600 via-cyan-600 to-purple-600 rounded-[2.5rem] blur-2xl opacity-30 group-hover:opacity-50 transition duration-1000 animate-tilt"></div>
 
@@ -195,9 +195,9 @@ export default function Hero({ onOpenModal }: HeroProps) {
                     <img
                       key={src}
                       src={src}
-                      className={`absolute inset-0 w-full h-full object-contain transition-all duration-1000 ease-in-out transform ${index === currentImageIndex
-                          ? "opacity-100 scale-100"
-                          : "opacity-0 scale-110"
+                      className={`absolute inset-0 w-full h-full object-cover transition-all duration-1000 ease-in-out transform ${index === currentImageIndex
+                        ? "opacity-100 scale-100"
+                        : "opacity-0 scale-110"
                         }`}
                       alt={`Hero Slide ${index + 1}`}
                     />

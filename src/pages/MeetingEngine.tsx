@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { ZegoUIKitPrebuilt } from '@zegocloud/zego-uikit-prebuilt';
 import { Video, Users, Loader2, ArrowLeft, ShieldCheck, Play, Copy, Share2 } from 'lucide-react';
 
-const API_BASE_URL = 'https://api.codingboss.in';
+const API_BASE_URL = 'https://concise-egomaniac-starved.ngrok-free.dev';
 
 export default function MeetingEngine() {
   const locationParams = new URLSearchParams(window.location.search);
@@ -26,7 +26,6 @@ export default function MeetingEngine() {
   const userName = userEmail.split('@')[0];
 
   const fetchActiveMeetings = async () => {
-    if (!isAdmin) return;
     setIsLoadingMeetings(true);
     try {
       const res = await fetch(`${API_BASE_URL}/military/meeting/live/`, {
@@ -49,10 +48,10 @@ export default function MeetingEngine() {
   };
 
   useEffect(() => {
-    if (isAdmin && !isInMeeting) {
+    if (!isInMeeting) {
       fetchActiveMeetings();
     }
-  }, [isAdmin, isInMeeting]);
+  }, [isInMeeting]);
 
   const meetingLink = window.location.origin + '/meeting?roomID=' + createdMeetingId;
 
@@ -101,32 +100,7 @@ export default function MeetingEngine() {
   const handleJoinMeeting = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!roomID) return;
-    setIsInitializing(true);
-    setErrorMsg('');
-    try {
-      const res = await fetch(`${API_BASE_URL}/military/meeting/join/`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'ngrok-skip-browser-warning': 'true'
-        },
-        body: JSON.stringify({
-          meeting_id: roomID,
-          user_id: userEmail,
-          user_name: userName
-        })
-      });
-
-      if (!res.ok) {
-        throw new Error("Meeting not found or failed to join.");
-      }
-
-      await initializeZego(roomID);
-    } catch (err: any) {
-      setErrorMsg(err.message || 'Something went wrong.');
-    } finally {
-      setIsInitializing(false);
-    }
+    window.location.href = `${API_BASE_URL}/military/meeting/room/?roomID=${roomID}`;
   };
 
   const initializeZego = async (meetingID: string) => {
@@ -380,7 +354,7 @@ export default function MeetingEngine() {
               </button>
             </form>
           )}
-          {isAdmin && !createdMeetingId && (
+          {!createdMeetingId && (
             <div className="mt-8 pt-8 border-t border-white/10">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-white font-bold text-lg">Active Meetings</h3>
@@ -415,11 +389,7 @@ export default function MeetingEngine() {
                         </button>
                         <button
                           onClick={() => {
-                            setIsInitializing(true);
-                            initializeZego(meeting.meeting_id).catch(err => {
-                              setErrorMsg(err.message || 'Something went wrong.');
-                              setIsInitializing(false);
-                            });
+                            window.location.href = `${API_BASE_URL}/military/meeting/room/?roomID=${meeting.meeting_id}`;
                           }}
                           className="flex-1 bg-indigo-600/20 hover:bg-indigo-600/40 text-indigo-300 text-xs font-medium py-2 rounded-lg transition-colors flex items-center justify-center gap-1 border border-indigo-500/30"
                         >

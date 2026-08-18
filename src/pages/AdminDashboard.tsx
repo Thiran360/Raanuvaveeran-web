@@ -55,7 +55,7 @@ const AdminDashboard: React.FC = () => {
 
   const handleLogout = () => {
     localStorage.removeItem("admin");
-    navigate("/");
+    navigate("/admin");
   };
 
   const deleteCourse = (id: number) => setCourses(courses.filter((c) => c.id !== id));

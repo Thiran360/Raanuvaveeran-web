@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { CheckCircle2, X } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
-const API_BASE = "https://api.codingboss.in/military";
+const API_BASE = "https://concise-egomaniac-starved.ngrok-free.dev/military";
 
 // --------------------------------------------------
 // Permanent Device ID Function (Keep This)
@@ -85,7 +85,10 @@ const Auth: React.FC = () => {
         }
 
         localStorage.setItem("userLoggedIn", "true");
-        localStorage.setItem("userEmail", form.email);
+        localStorage.setItem("userEmail", data.email || form.email);
+        if (data.user_id) localStorage.setItem("userId", data.user_id.toString());
+        if (data.username) localStorage.setItem("userName", data.username);
+        if (data.mobile) localStorage.setItem("userMobile", data.mobile);
         setSuccessMessage(t('authSuccess'));
         setTimeout(() => {
           setSuccessMessage("");

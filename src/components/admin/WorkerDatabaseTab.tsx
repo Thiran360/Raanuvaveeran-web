@@ -5,7 +5,7 @@ import { WorkerProfile, WorkerCategory, Site } from '../../types';
 import { apiService } from '../../lib/api';
 import { useLanguage } from '../../context/LanguageContext';
 
-const getApiOrigin = (): string => { return "https://api.codingboss.in"; };
+const getApiOrigin = () => { return "https://concise-egomaniac-starved.ngrok-free.dev"; };
 const IMAGE_API_BASE = getApiOrigin();
 
 /**

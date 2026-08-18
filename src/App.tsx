@@ -4,6 +4,7 @@ import Header from './components/Header';
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
 import CoursesPage from './pages/CoursesPage';
+import FastrackCoursesPage from './pages/FastrackCoursesPage';
 import TeachersPage from './pages/TeachersPage';
 import BlogPage from './pages/BlogPage';
 import ContactPage from './pages/ContactPage';
@@ -15,6 +16,7 @@ import ScrollToTop from "./components/ScrollToTop";
 import Auth from './components/Auth';
 import AdminLogin from "./pages/AdminLogin";
 import AdminDashboard from "./pages/AdminDashboard";
+import ProfilePage from './pages/ProfilePage';
 import MeetingEngine from "./pages/MeetingEngine";
 import { useLanguage } from './context/LanguageContext';
 
@@ -76,6 +78,8 @@ function EnrollmentModal({
         return t('getCertificateModal');
       case 'preview':
         return t('previewCourseModal');
+      case 'knowledge':
+        return t('knowledgeModalTitle');
       case 'demo':
       default:
         return t('watchDemoModal');
@@ -90,6 +94,8 @@ function EnrollmentModal({
         return t('certificateModalDesc');
       case 'preview':
         return t('previewModalDesc');
+      case 'knowledge':
+        return t('knowledgeModalDesc');
       case 'demo':
       default:
         return t('demoModalDesc');
@@ -116,7 +122,8 @@ function EnrollmentModal({
               {getDescription()}
             </p>
 
-            <div className="space-y-4">
+            {activeModal !== 'knowledge' && (
+              <div className="space-y-4">
               <input
                 type="text"
                 name="name"
@@ -155,6 +162,7 @@ function EnrollmentModal({
                 {isSubmitting ? t('modalSubmitting') : t('modalSubmit')}
               </button>
             </div>
+            )}
           </>
         ) : (
           <div className="text-center py-8">
@@ -193,11 +201,13 @@ function App() {
                 <Route path="/" element={<HomePage onOpenModal={setActiveModal} />} />
                 <Route path="/about" element={<AboutPage />} />
                 <Route path="/courses" element={<CoursesPage onOpenModal={setActiveModal} />} />
+                <Route path="/fastrack-courses" element={<FastrackCoursesPage onOpenModal={setActiveModal} />} />
                 <Route path="/teachers" element={<TeachersPage />} />
                 <Route path="/blog" element={<BlogPage />} />
                 <Route path="/contact" element={<ContactPage />} />
                 <Route path="/live-class" element={<LiveClassPage />} />
                 <Route path="/auth" element={<Auth />} />
+                <Route path="/profile" element={<ProfilePage />} />
 
               </Routes>
               <WhatsAppButton />

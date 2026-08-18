@@ -5,14 +5,14 @@ import { useLanguage } from "../../context/LanguageContext";
 const LiveClassTab: React.FC = () => {
   const { t } = useLanguage();
   const [isLiveActive, setIsLiveActive] = useState<boolean>(localStorage.getItem('isLiveActive') === 'true');
-  const [meetingLink, setMeetingLink] = useState<string>(localStorage.getItem('liveMeetingLink') || 'https://api.codingboss.in/military/live');
+  const [meetingLink, setMeetingLink] = useState<string>(localStorage.getItem('liveMeetingLink') || 'https://concise-egomaniac-starved.ngrok-free.dev/military/live');
   const [statusMessage, setStatusMessage] = useState<string>("");
 
   useEffect(() => {
     // Listen for changes in localStorage from other tabs
     const handleStorageChange = () => {
       setIsLiveActive(localStorage.getItem('isLiveActive') === 'true');
-      setMeetingLink(localStorage.getItem('liveMeetingLink') || 'https://api.codingboss.in/military/live');
+      setMeetingLink(localStorage.getItem('liveMeetingLink') || 'https://concise-egomaniac-starved.ngrok-free.dev/military/live');
     };
 
     window.addEventListener('storage', handleStorageChange);
@@ -44,6 +44,38 @@ const LiveClassTab: React.FC = () => {
 
     // Trigger a storage event manually for the same tab
     window.dispatchEvent(new Event('storage'));
+  };
+
+  const handleCreateMeeting = async () => {
+    try {
+      const title = prompt("Enter meeting title:", "Live Session");
+      if (!title) return;
+
+      setStatusMessage("Creating meeting via ZEGOCLOUD...");
+      const API_BASE_URL = 'https://concise-egomaniac-starved.ngrok-free.dev';
+      const res = await fetch(`${API_BASE_URL}/military/meeting/create/`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'ngrok-skip-browser-warning': 'true'
+        },
+        body: JSON.stringify({
+          title,
+          host: "Admin",
+          host_id: "admin@gmail.com"
+        })
+      });
+      const data = await res.json();
+      if (!res.ok || !data.meeting_id) {
+        throw new Error(data.message || "Failed to create meeting.");
+      }
+      
+      const newLink = `${API_BASE_URL}/military/meeting/room/?roomID=${data.meeting_id}`;
+      setMeetingLink(newLink);
+      setStatusMessage("Meeting created successfully! Click 'Start Stream' to broadcast.");
+    } catch (err: any) {
+      setStatusMessage("Error: " + err.message);
+    }
   };
 
   return (
@@ -89,7 +121,17 @@ const LiveClassTab: React.FC = () => {
 
               <div className="space-y-6">
                 <div>
-                  <label className="block text-xs font-black text-slate-400 uppercase tracking-widest mb-3 ml-1">{t('meetingUrlLabel')}</label>
+                  <div className="flex justify-between items-center mb-3">
+                    <label className="block text-xs font-black text-slate-400 uppercase tracking-widest ml-1">{t('meetingUrlLabel')}</label>
+                    <button 
+                      onClick={handleCreateMeeting}
+                      disabled={isLiveActive}
+                      className="text-indigo-600 hover:text-indigo-800 text-xs font-bold uppercase tracking-wider flex items-center gap-1 transition-colors disabled:opacity-50"
+                    >
+                      <Video className="w-3.5 h-3.5" />
+                      Auto-generate Meeting
+                    </button>
+                  </div>
                   <div className="relative group">
                     <div className="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
                       <Link className="w-5 h-5 text-slate-400 group-focus-within:text-indigo-600 transition-colors" />

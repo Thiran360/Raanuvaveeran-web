@@ -1,6 +1,7 @@
 import { PlayCircle, Clock, CheckCircle, Target, BookOpen, Video, Trophy, Lock, Play, Check, Users, Zap, Star, ExternalLink, ArrowLeft } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 import { useLanguage } from '../context/LanguageContext';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 interface ModulesPageProps {
   onOpenModal: (modal: string) => void;
@@ -43,19 +44,18 @@ const generateVideos = (moduleNum: number, count: number) => {
 };
 
 const videoData = {
-  module1: generateVideos(1, 32),
-  module2: generateVideos(2, 32),
-  module3: generateVideos(3, 32)
+  module1: generateVideos(1, 30),
+  module2: generateVideos(2, 30),
+  module3: generateVideos(3, 30)
 };
 
 const getModules = (t: any) => [
   {
     id: 1,
     title: t('module1Title'),
-    subtitle: 'बुनियादी हिंदी',
     duration: `16 ${t('hoursText')}`,
     videoHours: `16 ${t('hoursText')}`,
-    totalVideos: 32,
+    totalVideos: 30,
     videos: videoData.module1,
     description: t('module1Desc'),
     color: 'from-green-400 to-blue-500',
@@ -69,10 +69,9 @@ const getModules = (t: any) => [
   {
     id: 2,
     title: t('module2Title'),
-    subtitle: 'बातचीत और व्याकरण',
     duration: `16 ${t('hoursText')}`,
     videoHours: `16 ${t('hoursText')}`,
-    totalVideos: 32,
+    totalVideos: 30,
     videos: videoData.module2,
     description: t('module2Desc'),
     color: 'from-orange-400 to-red-500',
@@ -86,10 +85,9 @@ const getModules = (t: any) => [
   {
     id: 3,
     title: t('module3Title'),
-    subtitle: 'उन्नत हिंदी',
     duration: `16 ${t('hoursText')}`,
     videoHours: `16 ${t('hoursText')}`,
-    totalVideos: 32,
+    totalVideos: 30,
     videos: videoData.module3,
     description: t('module3Desc'),
     color: 'from-purple-400 to-pink-500',
@@ -128,9 +126,19 @@ function getYoutubeIframeUrl(url: string): string | null {
 
 export default function ModulesPage({ onOpenModal }: ModulesPageProps) {
   const { t } = useLanguage();
+  const location = useLocation();
+  const navigate = useNavigate();
   const modules = getModules(t);
   const [selectedModule, setSelectedModule] = useState<number | null>(null);
   const [currentVideoIndex, setCurrentVideoIndex] = useState<number>(0);
+  const [showDemoVideo, setShowDemoVideo] = useState(false);
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    if (params.get('demo') === 'true') {
+      setShowDemoVideo(true);
+    }
+  }, [location.search]);
 
   const [completedVideos, setCompletedVideos] = useState<{ [key: number]: Set<number> }>({
     1: new Set(),
@@ -272,6 +280,42 @@ export default function ModulesPage({ onOpenModal }: ModulesPageProps) {
         .animate-fade-down { animation: fadeInDown 0.8s ease-out forwards; }
         .animate-scale-in { animation: scaleIn 0.8s ease-out forwards; }
       `}</style>
+
+      {/* Demo Video Player Modal */}
+      {showDemoVideo && (
+        <div className="fixed inset-0 bg-black/95 z-50 overflow-hidden">
+          <div className="h-full flex flex-col">
+            <div className="bg-gradient-to-r from-orange-500 to-red-500 px-4 sm:px-6 py-4 flex justify-between items-center">
+              <h3 className="text-lg sm:text-xl font-bold text-white">
+                Hindi Advanced Class - Demo
+              </h3>
+              <button
+                onClick={() => {
+                  setShowDemoVideo(false);
+                  navigate('/courses', { replace: true });
+                }}
+                className="text-white hover:bg-white/20 rounded-full p-2 transition-all"
+              >
+                <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+
+            <div className="flex-1 flex items-center justify-center p-4">
+              <video
+                className="w-full max-w-5xl aspect-video rounded-lg shadow-2xl"
+                controls
+                autoPlay
+                src="https://raanuvaveeranspokenhindiacademy.com/videos/Video%20Project%201.mp4"
+                controlsList="nodownload"
+              >
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Video Player Modal */}
       {selectedModule && currentVideo && currentModule && (
@@ -487,150 +531,6 @@ export default function ModulesPage({ onOpenModal }: ModulesPageProps) {
         </div>
       </div>
 
-      {/* ======= UNIFIED LIVE CLASS SECTION ======= */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
-        <div className={`rounded-3xl p-8 shadow-2xl transition-all duration-700 relative overflow-hidden ${isLiveActive
-          ? 'bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-500 text-white'
-          : 'bg-white border border-gray-200 text-gray-800'}`}>
-
-          {/* Decorative Background Elements for Live State */}
-          {isLiveActive && (
-            <>
-              <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -mr-20 -mt-20 animate-pulse" />
-              <div className="absolute bottom-0 left-0 w-48 h-48 bg-purple-500/20 rounded-full blur-3xl -ml-16 -mb-16" />
-            </>
-          )}
-
-          <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
-            <div className="flex items-center gap-6">
-              <div className={`p-4 rounded-3xl backdrop-blur-md border ${isLiveActive
-                ? 'bg-white/20 border-white/30 rotate-3 group-hover:rotate-6'
-                : 'bg-gray-100 border-gray-200'} transition-transform duration-300`}>
-                <Video className={`w-10 h-10 ${isLiveActive ? 'text-white' : 'text-gray-400'}`} />
-              </div>
-
-              <div>
-                <div className="flex items-center gap-3 mb-2">
-                  {isLiveActive ? (
-                    <span className="flex items-center gap-1.5 bg-red-500 text-white text-[10px] font-black px-2.5 py-1 rounded-lg shadow-lg border-2 border-white animate-bounce">
-                      {t('liveNowLabel')}
-                    </span>
-                  ) : (
-                    <span className="flex items-center gap-1.5 bg-gray-100 text-gray-500 text-[10px] font-bold px-2.5 py-1 rounded-lg border border-gray-200">
-                      {t('offlineLabel')}
-                    </span>
-                  )}
-                  <span className={`text-xs font-bold uppercase tracking-wider ${isLiveActive ? 'text-white/80' : 'text-gray-400'}`}>
-                    {isAdmin ? t('adminDesk') : t('engineStatus')}
-                  </span>
-                </div>
-
-                <h3 className={`text-2xl md:text-3xl font-black leading-tight ${isLiveActive ? 'text-white' : 'text-gray-900'}`}>
-                  {isLiveActive
-                    ? t('meetingEngineActive')
-                    : t('meetingEngineOffline')}
-                </h3>
-
-                <p className={`text-base mt-2 font-medium opacity-90 ${isLiveActive ? 'text-indigo-100' : 'text-gray-500'}`}>
-                  {isLiveActive
-                    ? t('liveActiveDesc')
-                    : t('liveOfflineDesc')}
-                </p>
-              </div>
-            </div>
-
-            <div className="flex flex-col gap-4 flex-shrink-0 w-full lg:w-auto">
-              {/* --- JOIN BUTTON (LoggedIn Users) --- */}
-              {isLoggedIn && isLiveActive && (
-                <div className="flex flex-col gap-4 w-full animate-in fade-in slide-in-from-bottom-2 duration-500">
-
-                  {/* Provide the Link to Copy */}
-                  {!isAdmin && liveMeetingLink && (
-                    <div className="bg-indigo-900/40 border border-indigo-400/30 rounded-xl p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                      <div className="min-w-0 pr-4">
-                        <p className="text-indigo-200 text-xs font-bold uppercase tracking-wider mb-1">{t('step1Copy')}</p>
-                        <p className="text-white font-medium text-sm truncate">{liveMeetingLink}</p>
-                      </div>
-                      <button
-                        onClick={() => {
-                          navigator.clipboard.writeText(liveMeetingLink);
-                          alert("Link copied! Now paste it in the box below to join.");
-                        }}
-                        className="bg-indigo-500 hover:bg-indigo-600 text-white px-5 py-2.5 rounded-lg text-sm font-bold shadow transition-colors whitespace-nowrap self-stretch sm:self-auto shrink-0"
-                      >
-                        {t('copyLinkBtn')}
-                      </button>
-                    </div>
-                  )}
-
-                  <div className="flex flex-col sm:flex-row items-center gap-3 w-full">
-                    <div className="relative w-full sm:w-96 flex">
-                      <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                        <svg className="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" /></svg>
-                      </div>
-                      <input
-                        type="text"
-                        placeholder={t('step2Paste')}
-                        className="pl-12 pr-4 py-4 rounded-xl text-gray-900 border-2 border-transparent bg-white/10 text-white placeholder:text-indigo-200 focus:bg-white focus:text-gray-900 focus:placeholder:text-gray-400 focus:border-indigo-300 focus:outline-none focus:ring-4 focus:ring-indigo-400/30 w-full shadow-inner font-medium transition-all duration-300"
-                        value={manualJoinLink}
-                        onChange={(e) => setManualJoinLink(e.target.value)}
-                      />
-                    </div>
-
-                    <button
-                      onClick={() => {
-                        if (!manualJoinLink.trim()) {
-                          alert("Please paste the meeting link first.");
-                          return;
-                        }
-                        window.open(manualJoinLink, '_blank');
-                      }}
-                      className="flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-black text-lg transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.3)] bg-white text-indigo-700 hover:bg-indigo-50 hover:scale-105 active:scale-95 w-full sm:w-auto flex-shrink-0 border-2 border-white"
-                    >
-                      {t('joinClassBtn')}
-                      <ExternalLink className="w-5 h-5" />
-                    </button>
-                  </div></div>
-              )}
-
-              {/* --- LOGIN PROMPT (Guest Users) --- */}
-              {!isLoggedIn && isLiveActive && (
-                <button
-                  onClick={() => onOpenModal('enroll')}
-                  className="flex items-center gap-3 px-8 py-4 rounded-xl font-bold bg-white text-blue-600 hover:bg-blue-50 transition-all shadow-lg"
-                >
-                  {t('loginEngineBtn')} <ArrowLeft className="w-5 h-5 rotate-180" />
-                </button>
-              )}
-
-              {/* --- ADMIN ONLY CONTROLS --- */}
-              {isAdmin && (
-                <div className="flex flex-col gap-3">
-                  {isLiveActive ? (
-                    <button
-                      onClick={endLiveClass}
-                      className="bg-red-500 hover:bg-red-600 text-white px-8 py-4 rounded-xl font-bold transition-all shadow-lg flex items-center justify-center gap-2"
-                    >
-                      {t('stopClassBtn')}
-                    </button>
-                  ) : (
-                    <div className="flex items-center gap-2">
-                      <div className="flex items-center gap-2">
-                        <button
-                          onClick={() => startLiveClass('https://api.codingboss.in/military/live')}
-                          className="bg-indigo-600 hover:bg-indigo-700 text-white px-10 py-4 rounded-xl font-bold transition-all shadow-lg whitespace-nowrap"
-                        >
-                          {t('startClassBtn')}
-                        </button>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-      </div>
 
       {/* Learning Benefits Section */}
       <div ref={benefitsRef} className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
@@ -695,24 +595,23 @@ export default function ModulesPage({ onOpenModal }: ModulesPageProps) {
                     </div>
                   )}
 
-                  <div className={`relative bg-gradient-to-br ${module.color} p-6 sm:p-8 text-white`}>
-                    <div className="absolute top-2 sm:top-4 right-2 sm:right-4 bg-white/20 backdrop-blur-sm px-3 sm:px-4 py-1 sm:py-2 rounded-full">
-                      <span className="font-bold text-xs sm:text-sm">{t('moduleText')} {module.id}</span>
+                  <div className={`relative bg-gradient-to-br ${module.color} p-4 sm:p-6 text-white ${moduleLocked ? 'pt-12 sm:pt-16' : ''}`}>
+                    <div className="absolute top-2 sm:top-4 right-2 sm:right-4 bg-white/20 backdrop-blur-sm px-2 sm:px-3 py-1 rounded-full">
+                      <span className="font-bold text-xs">{t('moduleText')} {module.id}</span>
                     </div>
 
                     <div className="flex items-start justify-between">
                       <div className="flex-1 pr-16">
-                        <h3 className="text-2xl sm:text-3xl font-bold mb-2">{module.title}</h3>
-                        <p className="text-lg sm:text-xl text-white/90 mb-3 sm:mb-4">{module.subtitle}</p>
-                        <p className="text-sm sm:text-base text-white/80 mb-4 sm:mb-6">{module.description}</p>
+                        <h3 className="text-xl sm:text-2xl font-bold mb-1">{module.title}</h3>
+                        <p className="text-xs sm:text-sm text-white/80 mb-3 sm:mb-4">{module.description}</p>
 
-                        <div className="flex flex-wrap gap-2 sm:gap-4">
-                          <div className="flex items-center gap-2 bg-white/20 backdrop-blur-sm px-3 sm:px-4 py-1 sm:py-2 rounded-full text-xs sm:text-sm">
-                            <Video className="w-4 h-4 sm:w-5 sm:h-5" />
+                        <div className="flex flex-wrap gap-2 sm:gap-3">
+                          <div className="flex items-center gap-1 sm:gap-2 bg-white/20 backdrop-blur-sm px-2 sm:px-3 py-1 rounded-full text-xs">
+                            <Video className="w-3 h-3 sm:w-4 sm:h-4" />
                             <span className="font-semibold">{module.totalVideos} {t('videosText')} • {module.videoHours}</span>
                           </div>
-                          <div className="flex items-center gap-2 bg-white/20 backdrop-blur-sm px-3 sm:px-4 py-1 sm:py-2 rounded-full text-xs sm:text-sm">
-                            <Clock className="w-4 h-4 sm:w-5 sm:h-5" />
+                          <div className="flex items-center gap-1 sm:gap-2 bg-white/20 backdrop-blur-sm px-2 sm:px-3 py-1 rounded-full text-xs">
+                            <Clock className="w-3 h-3 sm:w-4 sm:h-4" />
                             <span className="font-semibold">{module.duration}</span>
                           </div>
                         </div>
@@ -720,12 +619,12 @@ export default function ModulesPage({ onOpenModal }: ModulesPageProps) {
                     </div>
                   </div>
 
-                  <div className="p-8">
+                  <div className="p-4 sm:p-6">
                     {/* Video Progress Bar */}
-                    <div className="mb-8">
-                      <div className="flex justify-between items-center mb-3">
-                        <h4 className="text-lg font-bold text-gray-900 flex items-center gap-2">
-                          <Play className="w-5 h-5 text-orange-500" />
+                    <div className="mb-6">
+                      <div className="flex justify-between items-center mb-2">
+                        <h4 className="text-base sm:text-lg font-bold text-gray-900 flex items-center gap-2">
+                          <Play className="w-4 h-4 sm:w-5 sm:h-5 text-orange-500" />
                           {t('videoProgress')}
                         </h4>
                         <span className="text-sm font-semibold text-gray-600">
@@ -755,18 +654,18 @@ export default function ModulesPage({ onOpenModal }: ModulesPageProps) {
                       )}
                     </div>
 
-                    <div className="grid md:grid-cols-2 gap-8">
+                    <div className="grid md:grid-cols-2 gap-4 sm:gap-6">
                       {/* Topics Covered */}
                       <div>
-                        <h4 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-                          <BookOpen className="w-5 h-5 text-orange-500" />
+                        <h4 className="text-base sm:text-lg font-bold text-gray-900 mb-3 flex items-center gap-2">
+                          <BookOpen className="w-4 h-4 sm:w-5 sm:h-5 text-orange-500" />
                           {t('topicsCovered')}
                         </h4>
                         <div className="space-y-2">
-                          {module.topics.map((topic, idx) => (
+                          {module.topics.map((topic: string, idx: number) => (
                             <div key={idx} className="flex items-start gap-2">
                               <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
-                              <span className="text-gray-700">{topic}</span>
+                              <span className="text-gray-700">{topic.replace(/\s*\(.*?\)/g, '')}</span>
                             </div>
                           ))}
                         </div>
@@ -774,16 +673,16 @@ export default function ModulesPage({ onOpenModal }: ModulesPageProps) {
 
                       {/* Test Information */}
                       <div>
-                        <h4 className="text-lg sm:text-xl font-bold text-gray-900 mb-3 sm:mb-4 flex items-center gap-2">
+                        <h4 className="text-base sm:text-lg font-bold text-gray-900 mb-2 sm:mb-3 flex items-center gap-2">
                           <Target className="w-4 h-4 sm:w-5 sm:h-5 text-red-500" />
                           {t('testDetailsTitle')}
                         </h4>
-                        <div className={`bg-gradient-to-br ${testUnlocked ? 'from-green-50 to-blue-50' : 'from-gray-100 to-gray-200'} rounded-2xl p-4 sm:p-6 space-y-3 sm:space-y-4 relative`}>
+                        <div className={`bg-gradient-to-br ${testUnlocked ? 'from-green-50 to-blue-50' : 'from-gray-100 to-gray-200'} rounded-xl p-3 sm:p-4 space-y-2 sm:space-y-3 relative`}>
                           {!testUnlocked && (
-                            <div className="absolute inset-0 bg-gray-900/20 backdrop-blur-sm rounded-2xl flex items-center justify-center">
-                              <div className="text-center">
-                                <Lock className="w-10 h-10 sm:w-12 sm:h-12 text-gray-600 mx-auto mb-2" />
-                                <p className="font-bold text-sm sm:text-base text-gray-700">{t('testLocked')}</p>
+                            <div className="absolute inset-0 bg-gray-900/20 backdrop-blur-sm rounded-xl flex items-center justify-center">
+                              <div className="text-center p-4">
+                                <Lock className="w-8 h-8 sm:w-10 sm:h-10 text-gray-600 mx-auto mb-1" />
+                                <p className="font-bold text-sm text-gray-700">{t('testLocked')}</p>
                                 <p className="text-xs sm:text-sm text-gray-600">{t('completeAllVideosToUnlock')}</p>
                               </div>
                             </div>
@@ -910,7 +809,7 @@ export default function ModulesPage({ onOpenModal }: ModulesPageProps) {
             {/* Stats Grid */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 mb-6 sm:mb-8">
               {[
-                { num: "96", label: t('videosText') },
+                { num: "90", label: t('videosText') },
                 { num: "48", label: t('hoursText') },
                 { num: "3", label: t('testsText') },
                 { num: "150", label: t('questionsText') }

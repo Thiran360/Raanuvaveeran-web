@@ -74,9 +74,9 @@ const getTeachers = (t: any) => [
 
 const getStats = (t: any) => [
   { icon: Users, label: t('activeStudentsLabel'), value: '50,000+', color: 'bg-blue-500' },
-  { icon: GraduationCap, label: t('expertTeachersLabel'), value: '25+', color: 'bg-purple-500' },
+  { icon: GraduationCap, label: t('expertTeachersLabel'), value: '10+', color: 'bg-purple-500' },
   { icon: Trophy, label: t('successRateLabel'), value: '98%', color: 'bg-orange-500' },
-  { icon: Globe, label: t('countriesLabel'), value: '45+', color: 'bg-green-500' }
+  { icon: Globe, label: t('countriesLabel'), value: '15+', color: 'bg-green-500' }
 ];
 
 const getFeatures = (t: any) => [
@@ -241,92 +241,6 @@ export default function TeachersPage() {
         </div>
       </div>
 
-      {/* Teachers Grid */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20">
-        <AnimatedSection direction="up" className="text-center mb-12">
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">{t('teachingTeamTitle')}</h2>
-          <p className="text-base sm:text-lg text-gray-600">{t('teachingTeamDesc')}</p>
-        </AnimatedSection>
-
-        <div className="grid md:grid-cols-2 gap-6 sm:gap-8 mb-12 sm:mb-20">
-          {teachers.map((teacher, index) => (
-            <AnimatedSection key={index} direction={index % 2 === 0 ? 'left' : 'right'}>
-              <div className="bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-                <div className="md:flex">
-                  <div className="md:w-1/3 relative h-48 md:h-auto">
-                    <img
-                      src={teacher.image}
-                      alt={teacher.name}
-                      className="w-full h-full object-contain bg-gray-900/10"
-                    />
-                    <div className="absolute top-4 left-4 bg-white px-3 py-1 rounded-full flex items-center gap-1">
-                      <Star className="w-4 h-4 text-yellow-400 fill-current" />
-                      <span className="font-bold text-gray-900">{teacher.rating}</span>
-                    </div>
-                  </div>
-                  <div className="md:w-2/3 p-4 sm:p-6">
-                    <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-1">
-                      {teacher.name}
-                    </h3>
-                    <p className="text-orange-500 font-semibold mb-2 text-sm sm:text-base">{teacher.title}</p>
-                    <p className="text-gray-600 mb-4 text-sm sm:text-base">{teacher.bio}</p>
-
-                    <div className="grid grid-cols-2 gap-3 sm:gap-4 mb-4">
-                      <div className="bg-orange-50 rounded-lg p-2 sm:p-3">
-                        <div className="flex items-center gap-2 text-orange-600 mb-1">
-                          <BookOpen className="w-3 h-3 sm:w-4 sm:h-4" />
-                          <span className="text-xs sm:text-sm font-medium">{t('specializationLabel')}</span>
-                        </div>
-                        <p className="text-xs sm:text-sm text-gray-900 font-semibold">{teacher.specialization}</p>
-                      </div>
-                      <div className="bg-blue-50 rounded-lg p-2 sm:p-3">
-                        <div className="flex items-center gap-2 text-blue-600 mb-1">
-                          <Award className="w-3 h-3 sm:w-4 sm:h-4" />
-                          <span className="text-xs sm:text-sm font-medium">{t('experienceLabel')}</span>
-                        </div>
-                        <p className="text-xs sm:text-sm text-gray-900 font-semibold">{teacher.experience}</p>
-                      </div>
-                    </div>
-
-                    <div className="bg-green-50 rounded-lg p-2 sm:p-3 mb-4">
-                      <div className="flex items-center gap-2 text-green-600 mb-1">
-                        <Users className="w-3 h-3 sm:w-4 sm:h-4" />
-                        <span className="text-xs sm:text-sm font-medium">{t('studentsTaughtLabel')}</span>
-                      </div>
-                      <p className="text-xs sm:text-sm text-gray-900 font-semibold">{teacher.students}</p>
-                    </div>
-
-                    <div className="mb-4">
-                      <p className="text-xs sm:text-sm font-semibold text-gray-700 mb-2">{t('keyAchievementsLabel')}</p>
-                      <ul className="space-y-1">
-                        {teacher.achievements.map((achievement, idx) => (
-                          <li key={idx} className="text-xs sm:text-sm text-gray-600 flex items-start gap-2">
-                            <span className="text-orange-500 mt-1">•</span>
-                            <span>{achievement}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    <div className="flex gap-3">
-                      <button 
-                        onClick={() => navigate('/contact')}
-                        className="flex-1 bg-orange-500 text-white py-2 rounded-lg font-semibold hover:bg-orange-600 transition-colors flex items-center justify-center gap-2 text-sm sm:text-base"
-                      >
-                        <Mail className="w-3 h-3 sm:w-4 sm:h-4" />
-                        {t('contactBtn')}
-                      </button>
-                      <button className="px-3 sm:px-4 py-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors">
-                        <Linkedin className="w-4 h-4 sm:w-5 sm:h-5 text-gray-600" />
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </AnimatedSection>
-          ))}
-        </div>
-      </div>
 
       {/* Features Section */}
       <div className="bg-gradient-to-br from-purple-50 to-pink-50 py-12 sm:py-20">
@@ -389,8 +303,8 @@ export default function TeachersPage() {
 
           <div className="grid md:grid-cols-3 gap-6 sm:gap-8">
             {testimonials.map((testimonial, index) => (
-              <AnimatedSection key={index} direction={index === 1 ? 'up' : index === 0 ? 'left' : 'right'}>
-                <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-xl transition-all">
+              <AnimatedSection key={index} direction={index === 1 ? 'up' : index === 0 ? 'left' : 'right'} className="h-full">
+                <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-xl transition-all h-full flex flex-col">
                   <div className="flex items-center mb-4">
                     <img
                       src={testimonial.image}
@@ -407,7 +321,7 @@ export default function TeachersPage() {
                       <Star key={i} className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400 fill-current" />
                     ))}
                   </div>
-                  <p className="text-sm sm:text-base text-gray-700 italic">"{testimonial.text}"</p>
+                  <p className="text-sm sm:text-base text-gray-700 italic flex-grow">"{testimonial.text}"</p>
                 </div>
               </AnimatedSection>
             ))}
@@ -433,7 +347,7 @@ export default function TeachersPage() {
                     {t('applyTeacherBtn')}
                   </button>
                   <button
-                    onClick={() => navigate('/about')}
+                    onClick={() => navigate('/courses')}
                     className="bg-white text-orange-600 px-6 sm:px-8 py-3 sm:py-4 rounded-full font-bold text-base sm:text-lg hover:bg-orange-50 transition-all border-2 border-orange-500"
                   >
                     {t('learnMoreBtn')}
@@ -515,7 +429,7 @@ export default function TeachersPage() {
               {/* Global Students Card */}
               <div className="absolute top-48 right-20 bg-white rounded-2xl p-4 shadow-2xl w-36 h-36 animate-float-delayed flex flex-col items-center justify-center">
                 <Globe className="w-12 h-12 text-purple-600 mb-2" />
-                <div className="text-2xl font-bold text-gray-800">40+</div>
+                <div className="text-2xl font-bold text-gray-800">30+</div>
                 <div className="text-xs text-gray-600 text-center">{t('countriesWorldwideLabel')}</div>
               </div>
 

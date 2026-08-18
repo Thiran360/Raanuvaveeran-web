@@ -1,4 +1,4 @@
-const BASE_URL = "https://api.codingboss.in/military";
+const BASE_URL = "https://concise-egomaniac-starved.ngrok-free.dev/military";
 const API_BASE = `${BASE_URL}/live`;
 
 export interface LiveEvent {
