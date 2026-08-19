@@ -69,6 +69,9 @@ export default function Header() {
               <Link to="/teachers" className={`${isActive("/teachers") ? "text-yellow-400 font-bold" : "hover:text-yellow-400"} transition-colors whitespace-nowrap`}>
                 {t('teachers')}
               </Link>
+              <Link to="/gallery" className={`${isActive("/gallery") ? "text-yellow-400 font-bold" : "hover:text-yellow-400"} transition-colors whitespace-nowrap`}>
+                Gallery
+              </Link>
               <Link to="/contact" className={`${isActive("/contact") ? "text-yellow-400 font-bold" : "hover:text-yellow-400"} transition-colors whitespace-nowrap`}>
                 {t('contact')}
               </Link>
@@ -83,7 +86,7 @@ export default function Header() {
                   onClick={(e) => {
                     if (isLiveActive) {
                       e.preventDefault();
-                      const liveLink = localStorage.getItem('liveMeetingLink') || 'https://concise-egomaniac-starved.ngrok-free.dev/military/live';
+                      const liveLink = localStorage.getItem('liveMeetingLink') || 'https://api.codingboss.in/military/live';
                       window.open(liveLink, '_blank');
                     }
                   }}
@@ -241,6 +244,14 @@ export default function Header() {
                 </Link>
 
                 <Link
+                  to="/gallery"
+                  onClick={() => setIsMenuOpen(false)}
+                  className={`${isActive("/gallery") ? "text-yellow-400" : "hover:text-yellow-400"} py-2`}
+                >
+                  Gallery
+                </Link>
+
+                <Link
                   to="/contact"
                   onClick={() => setIsMenuOpen(false)}
                   className={`${isActive("/contact") ? "text-yellow-400" : "hover:text-yellow-400"} py-2`}
@@ -263,7 +274,7 @@ export default function Header() {
                       setIsMenuOpen(false);
                       if (isLiveActive) {
                         e.preventDefault();
-                        const liveLink = localStorage.getItem('liveMeetingLink') || 'https://concise-egomaniac-starved.ngrok-free.dev/military/live';
+                        const liveLink = localStorage.getItem('liveMeetingLink') || 'https://api.codingboss.in/military/live';
                         window.open(liveLink, '_blank');
                       }
                     }}

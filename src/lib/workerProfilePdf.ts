@@ -2,7 +2,7 @@ import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
 import { WorkerProfile } from "../types";
 
-const getApiOrigin = () => { return "https://concise-egomaniac-starved.ngrok-free.dev"; };
+const getApiOrigin = () => { return "https://api.codingboss.in"; };
 const NGROK_BASE = getApiOrigin();
 
 /**

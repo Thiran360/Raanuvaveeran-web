@@ -5,14 +5,14 @@ import { useLanguage } from "../../context/LanguageContext";
 const LiveClassTab: React.FC = () => {
   const { t } = useLanguage();
   const [isLiveActive, setIsLiveActive] = useState<boolean>(localStorage.getItem('isLiveActive') === 'true');
-  const [meetingLink, setMeetingLink] = useState<string>(localStorage.getItem('liveMeetingLink') || 'https://concise-egomaniac-starved.ngrok-free.dev/military/live');
+  const [meetingLink, setMeetingLink] = useState<string>(localStorage.getItem('liveMeetingLink') || 'https://api.codingboss.in/military/live');
   const [statusMessage, setStatusMessage] = useState<string>("");
 
   useEffect(() => {
     // Listen for changes in localStorage from other tabs
     const handleStorageChange = () => {
       setIsLiveActive(localStorage.getItem('isLiveActive') === 'true');
-      setMeetingLink(localStorage.getItem('liveMeetingLink') || 'https://concise-egomaniac-starved.ngrok-free.dev/military/live');
+      setMeetingLink(localStorage.getItem('liveMeetingLink') || 'https://api.codingboss.in/military/live');
     };
 
     window.addEventListener('storage', handleStorageChange);
@@ -52,7 +52,7 @@ const LiveClassTab: React.FC = () => {
       if (!title) return;
 
       setStatusMessage("Creating meeting via ZEGOCLOUD...");
-      const API_BASE_URL = 'https://concise-egomaniac-starved.ngrok-free.dev';
+      const API_BASE_URL = 'https://api.codingboss.in';
       const res = await fetch(`${API_BASE_URL}/military/meeting/create/`, {
         method: 'POST',
         headers: {

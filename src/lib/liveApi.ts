@@ -1,4 +1,4 @@
-const BASE_URL = "https://concise-egomaniac-starved.ngrok-free.dev/military";
+const BASE_URL = "https://api.codingboss.in/military";
 const API_BASE = `${BASE_URL}/live`;
 
 export interface LiveEvent {
@@ -88,6 +88,12 @@ export const liveApi = {
     // Assuming backend takes a query param for live_id to filter viewers
     const res = await fetch(`${BASE_URL}/viewers/?live_id=${id}`);
     if (!res.ok) throw new Error('Failed to fetch viewers');
+    return res.json();
+  },
+
+  getDemoVideo: async (id: number | string = 1): Promise<{ success: boolean, demo: string | null }> => {
+    const res = await fetch(`${BASE_URL}/live-video/${id}/demo/`);
+    if (!res.ok) throw new Error('Failed to fetch demo video');
     return res.json();
   }
 };

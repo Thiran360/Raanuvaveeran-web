@@ -18,6 +18,7 @@ import AdminLogin from "./pages/AdminLogin";
 import AdminDashboard from "./pages/AdminDashboard";
 import ProfilePage from './pages/ProfilePage';
 import MeetingEngine from "./pages/MeetingEngine";
+import GalleryPage from "./pages/GalleryPage";
 import { useLanguage } from './context/LanguageContext';
 
 // Modal component that can use useNavigate
@@ -104,7 +105,7 @@ function EnrollmentModal({
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-2xl p-8 max-w-md w-full relative">
+      <div className={`bg-white rounded-2xl p-8 w-full relative ${activeModal === 'demo_video' ? 'max-w-4xl' : 'max-w-md'}`}>
         {!showSuccess ? (
           <>
             <button
@@ -114,54 +115,70 @@ function EnrollmentModal({
               ✕
             </button>
 
-            <h3 className="text-2xl font-bold text-gray-900 mb-4">
-              {getTitle()}
-            </h3>
+            {activeModal === 'demo_video' ? (
+              <div className="w-full aspect-video mt-2 rounded-xl overflow-hidden">
+                <iframe 
+                  width="100%" 
+                  height="100%" 
+                  src="https://www.youtube.com/embed/ZmfE7FOcpgQ?autoplay=1" 
+                  title="Demo Video" 
+                  frameBorder="0" 
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                  allowFullScreen
+                ></iframe>
+              </div>
+            ) : (
+              <>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                  {getTitle()}
+                </h3>
 
-            <p className="text-gray-600 mb-6">
-              {getDescription()}
-            </p>
+                <p className="text-gray-600 mb-6">
+                  {getDescription()}
+                </p>
 
-            {activeModal !== 'knowledge' && (
-              <div className="space-y-4">
-              <input
-                type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleInputChange}
-                placeholder={t('modalNamePlaceholder')}
-                required
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg"
-              />
+                {activeModal !== 'knowledge' && (
+                  <div className="space-y-4">
+                  <input
+                    type="text"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    placeholder={t('modalNamePlaceholder')}
+                    required
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg"
+                  />
 
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleInputChange}
-                placeholder={t('modalEmailPlaceholder')}
-                required
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg"
-              />
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    placeholder={t('modalEmailPlaceholder')}
+                    required
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg"
+                  />
 
-              <input
-                type="tel"
-                name="phone"
-                value={formData.phone}
-                onChange={handleInputChange}
-                placeholder={t('modalPhonePlaceholder')}
-                required
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg"
-              />
+                  <input
+                    type="tel"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleInputChange}
+                    placeholder={t('modalPhonePlaceholder')}
+                    required
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg"
+                  />
 
-              <button
-                onClick={handleSubmit}
-                disabled={isSubmitting || !formData.name || !formData.email || !formData.phone}
-                className="w-full bg-orange-500 text-white py-3 rounded-lg hover:bg-orange-600 transition-colors disabled:opacity-50"
-              >
-                {isSubmitting ? t('modalSubmitting') : t('modalSubmit')}
-              </button>
-            </div>
+                  <button
+                    onClick={handleSubmit}
+                    disabled={isSubmitting || !formData.name || !formData.email || !formData.phone}
+                    className="w-full bg-orange-500 text-white py-3 rounded-lg hover:bg-orange-600 transition-colors disabled:opacity-50"
+                  >
+                    {isSubmitting ? t('modalSubmitting') : t('modalSubmit')}
+                  </button>
+                </div>
+                )}
+              </>
             )}
           </>
         ) : (
@@ -203,6 +220,7 @@ function App() {
                 <Route path="/courses" element={<CoursesPage onOpenModal={setActiveModal} />} />
                 <Route path="/fastrack-courses" element={<FastrackCoursesPage onOpenModal={setActiveModal} />} />
                 <Route path="/teachers" element={<TeachersPage />} />
+                <Route path="/gallery" element={<GalleryPage />} />
                 <Route path="/blog" element={<BlogPage />} />
                 <Route path="/contact" element={<ContactPage />} />
                 <Route path="/live-class" element={<LiveClassPage />} />

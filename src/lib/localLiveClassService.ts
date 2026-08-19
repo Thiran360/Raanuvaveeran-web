@@ -1,6 +1,6 @@
 import { LiveClass } from '../types';
 
-const API_BASE_URL = "https://concise-egomaniac-starved.ngrok-free.dev/military";
+const API_BASE_URL = "https://api.codingboss.in/military";
 
 const mapLiveClass = (item: any): LiveClass => {
   if (!item || typeof item !== 'object') {

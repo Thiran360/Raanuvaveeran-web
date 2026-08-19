@@ -2,6 +2,7 @@ import { PlayCircle, Clock, CheckCircle, Target, BookOpen, Video, Trophy, Lock, 
 import { useState, useEffect, useRef } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { liveApi } from '../lib/liveApi';
 
 interface ModulesPageProps {
   onOpenModal: (modal: string) => void;
@@ -132,11 +133,17 @@ export default function ModulesPage({ onOpenModal }: ModulesPageProps) {
   const [selectedModule, setSelectedModule] = useState<number | null>(null);
   const [currentVideoIndex, setCurrentVideoIndex] = useState<number>(0);
   const [showDemoVideo, setShowDemoVideo] = useState(false);
+  const [demoVideoUrl, setDemoVideoUrl] = useState<string>("https://raanuvaveeranspokenhindiacademy.com/videos/Video%20Project%201.mp4");
 
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     if (params.get('demo') === 'true') {
       setShowDemoVideo(true);
+      liveApi.getDemoVideo(1).then(data => {
+        if (data.success && data.demo) {
+          setDemoVideoUrl(data.demo);
+        }
+      }).catch(err => console.error("Error fetching demo video", err));
     }
   }, [location.search]);
 
@@ -304,10 +311,12 @@ export default function ModulesPage({ onOpenModal }: ModulesPageProps) {
 
             <div className="flex-1 flex items-center justify-center p-4">
               <video
+                key={demoVideoUrl}
                 className="w-full max-w-5xl aspect-video rounded-lg shadow-2xl"
                 controls
                 autoPlay
-                src="https://raanuvaveeranspokenhindiacademy.com/videos/Video%20Project%201.mp4"
+                playsInline
+                src={demoVideoUrl}
                 controlsList="nodownload"
               >
                 Your browser does not support the video tag.
@@ -566,7 +575,7 @@ export default function ModulesPage({ onOpenModal }: ModulesPageProps) {
           <p className="text-base sm:text-lg text-gray-600">{t('learningJourneyDesc')}</p>
         </div>
 
-        <div className="space-y-6 sm:space-y-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 xl:gap-10">
           {modules.map((module, index) => {
             const completedCount = getCompletedCount(module.id);
             const progressPercent = getProgressPercentage(module.id);
@@ -575,192 +584,136 @@ export default function ModulesPage({ onOpenModal }: ModulesPageProps) {
             const isInView = moduleInViews[index];
 
             return (
-              <div key={module.id} ref={moduleRefs[index]} className="relative">
-                {index < modules.length - 1 && (
-                  <div className="hidden sm:block absolute left-1/2 top-full w-1 h-8 bg-gradient-to-b from-gray-300 to-transparent transform -translate-x-1/2 z-0" />
-                )}
+              <div
+                key={module.id}
+                ref={moduleRefs[index]}
+                className={`flex flex-col bg-white rounded-[2rem] border border-gray-100 shadow-xl shadow-gray-200/40 hover:shadow-2xl hover:shadow-gray-200/60 transition-all duration-500 overflow-hidden transform hover:-translate-y-2 relative group ${moduleLocked ? 'opacity-75 grayscale-[20%]' : ''} ${isInView ? 'animate-fade-up' : 'opacity-0'}`}
+                style={{ animationDelay: isInView ? `${index * 0.1}s` : '0s' }}
+              >
+                {/* Top Section - Gradient Background */}
+                <div className={`relative p-6 pb-12 bg-gradient-to-br ${module.color} text-white`}>
+                  <div className="bg-white/20 backdrop-blur-md self-start inline-block px-3 py-1 rounded-full text-xs font-bold tracking-wider mb-4 border border-white/20">
+                    {t('moduleText')} {module.id}
+                  </div>
+                  
+                  <h3 className="text-2xl font-bold mb-3 leading-snug">{module.title}</h3>
+                  <p className="text-white/80 text-sm leading-relaxed mb-6 line-clamp-2">
+                    {module.description}
+                  </p>
 
-                <div
-                  className={`bg-white rounded-2xl sm:rounded-3xl shadow-xl overflow-hidden transform transition-all duration-500 hover:shadow-2xl ${moduleLocked ? 'opacity-60' : ''
-                    } ${isInView ? 'animate-scale-in' : 'opacity-0'}`}
-                  style={{ animationDelay: isInView ? `${index * 0.1}s` : '0s' }}
-                >
-                  {moduleLocked && (
-                    <div className="absolute top-2 sm:top-4 left-2 sm:left-4 z-10 bg-red-500 text-white px-3 sm:px-4 py-1 sm:py-2 rounded-full flex items-center gap-2 text-xs sm:text-sm">
-                      <Lock className="w-3 h-3 sm:w-4 sm:h-4" />
-                      <span className="font-semibold hidden sm:inline">
-                        {module.id === 1 ? t('lockedEnrollment') : t('lockedPreviousTest')}
-                      </span>
-                      <span className="font-semibold sm:hidden">{t('lockedShort')}</span>
+                  <div className="flex flex-wrap gap-2">
+                    <div className="flex items-center gap-1.5 bg-black/10 backdrop-blur-sm px-2.5 py-1 rounded-lg text-xs font-medium border border-white/10">
+                      <Video className="w-3.5 h-3.5" />
+                      {module.totalVideos} {t('videosText')}
                     </div>
-                  )}
-
-                  <div className={`relative bg-gradient-to-br ${module.color} p-4 sm:p-6 text-white ${moduleLocked ? 'pt-12 sm:pt-16' : ''}`}>
-                    <div className="absolute top-2 sm:top-4 right-2 sm:right-4 bg-white/20 backdrop-blur-sm px-2 sm:px-3 py-1 rounded-full">
-                      <span className="font-bold text-xs">{t('moduleText')} {module.id}</span>
-                    </div>
-
-                    <div className="flex items-start justify-between">
-                      <div className="flex-1 pr-16">
-                        <h3 className="text-xl sm:text-2xl font-bold mb-1">{module.title}</h3>
-                        <p className="text-xs sm:text-sm text-white/80 mb-3 sm:mb-4">{module.description}</p>
-
-                        <div className="flex flex-wrap gap-2 sm:gap-3">
-                          <div className="flex items-center gap-1 sm:gap-2 bg-white/20 backdrop-blur-sm px-2 sm:px-3 py-1 rounded-full text-xs">
-                            <Video className="w-3 h-3 sm:w-4 sm:h-4" />
-                            <span className="font-semibold">{module.totalVideos} {t('videosText')} • {module.videoHours}</span>
-                          </div>
-                          <div className="flex items-center gap-1 sm:gap-2 bg-white/20 backdrop-blur-sm px-2 sm:px-3 py-1 rounded-full text-xs">
-                            <Clock className="w-3 h-3 sm:w-4 sm:h-4" />
-                            <span className="font-semibold">{module.duration}</span>
-                          </div>
-                        </div>
-                      </div>
+                    <div className="flex items-center gap-1.5 bg-black/10 backdrop-blur-sm px-2.5 py-1 rounded-lg text-xs font-medium border border-white/10">
+                      <Clock className="w-3.5 h-3.5" />
+                      {module.duration}
                     </div>
                   </div>
 
-                  <div className="p-4 sm:p-6">
-                    {/* Video Progress Bar */}
-                    <div className="mb-6">
-                      <div className="flex justify-between items-center mb-2">
-                        <h4 className="text-base sm:text-lg font-bold text-gray-900 flex items-center gap-2">
-                          <Play className="w-4 h-4 sm:w-5 sm:h-5 text-orange-500" />
-                          {t('videoProgress')}
-                        </h4>
-                        <span className="text-sm font-semibold text-gray-600">
-                          {completedCount} / {module.totalVideos} {t('videosCompletedText')}
-                        </span>
-                      </div>
-                      <div className="w-full bg-gray-200 rounded-full h-4 overflow-hidden">
-                        <div
-                          className={`h-full bg-gradient-to-r ${module.color} transition-all duration-500 flex items-center justify-end px-2`}
-                          style={{ width: `${progressPercent}%` }}
-                        >
-                          {progressPercent > 10 && (
-                            <span className="text-xs font-bold text-white">{progressPercent}%</span>
-                          )}
+                  {/* Decorative shape */}
+                  <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-white opacity-10 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700"></div>
+                </div>
+
+                {/* Overlapping Progress Indicator */}
+                <div className="px-6 -mt-8 relative z-10">
+                  <div className="bg-white rounded-2xl p-4 shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-gray-100 flex items-center gap-4">
+                    {/* Circular Progress Ring */}
+                    <div className="relative w-14 h-14 flex-shrink-0 flex items-center justify-center">
+                      <svg className="w-14 h-14 transform -rotate-90">
+                        <circle className="text-gray-100" strokeWidth="4" stroke="currentColor" fill="transparent" r="24" cx="28" cy="28"/>
+                        <circle 
+                          className={`${progressPercent === 100 ? 'text-green-500' : 'text-orange-500'} transition-all duration-1000 ease-out`} 
+                          strokeWidth="4" 
+                          strokeDasharray={24 * 2 * Math.PI} 
+                          strokeDashoffset={24 * 2 * Math.PI - (progressPercent / 100) * 24 * 2 * Math.PI}
+                          strokeLinecap="round" 
+                          stroke="currentColor" 
+                          fill="transparent" 
+                          r="24" cx="28" cy="28"
+                        />
+                      </svg>
+                      <span className="absolute text-xs font-bold text-gray-800">{progressPercent}%</span>
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="text-sm font-bold text-gray-900 mb-0.5">{t('videoProgress')}</h4>
+                      <p className="text-xs text-gray-500">{completedCount} / {module.totalVideos} {t('videosCompletedText')}</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Middle Section - Content */}
+                <div className="p-6 flex-1 flex flex-col">
+                  <div className="mb-6 flex-1">
+                    <h4 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-4 flex items-center gap-2">
+                      <BookOpen className="w-3.5 h-3.5" /> {t('topicsCovered')}
+                    </h4>
+                    <div className="space-y-2.5">
+                      {module.topics.slice(0, 4).map((topic: string, idx: number) => (
+                        <div key={idx} className="flex items-start gap-2.5 group/item">
+                          <div className="mt-0.5 bg-green-50 rounded-full p-0.5 group-hover/item:bg-green-100 transition-colors">
+                            <CheckCircle className="w-3.5 h-3.5 text-green-500" />
+                          </div>
+                          <span className="text-sm text-gray-600 font-medium">{topic.replace(/\s*\(.*?\)/g, '')}</span>
                         </div>
-                      </div>
-                      {!testUnlocked && (
-                        <p className="text-sm text-orange-600 mt-2 font-medium">
-                          {t('completeToUnlock').replace('{count}', module.totalVideos.toString())}
-                        </p>
+                      ))}
+                      {module.topics.length > 4 && (
+                        <div className="text-xs font-medium text-gray-400 pl-7">
+                          + {module.topics.length - 4} more topics
+                        </div>
                       )}
-                      {testUnlocked && (
-                        <p className="text-sm text-green-600 mt-2 font-medium flex items-center gap-1">
-                          <CheckCircle className="w-4 h-4" />
-                          {t('testUnlockedMsg')}
-                        </p>
+                    </div>
+                  </div>
+
+                  {/* Test Details Card */}
+                  <div className={`p-4 rounded-2xl border mb-6 ${testUnlocked ? 'bg-green-50/50 border-green-100' : 'bg-gray-50 border-gray-100'}`}>
+                    <h4 className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3 flex items-center gap-1.5">
+                      <Target className="w-3.5 h-3.5" /> {t('testDetailsTitle')}
+                    </h4>
+                    
+                    {!testUnlocked ? (
+                      <div className="flex items-center gap-3 text-gray-500">
+                        <div className="w-8 h-8 rounded-full bg-white shadow-sm flex items-center justify-center border border-gray-100">
+                          <Lock className="w-4 h-4 text-gray-400" />
+                        </div>
+                        <span className="text-xs font-medium">{t('completeAllVideosToUnlock')}</span>
+                      </div>
+                    ) : (
+                      <div className="space-y-2 text-sm">
+                        <div className="flex justify-between">
+                          <span className="text-gray-500">{t('durationLabel')}</span>
+                          <span className="font-bold">{module.testInfo.duration}</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-gray-500">{t('passingScoreLabel')}</span>
+                          <span className="font-bold text-green-600">{module.testInfo.passingScore}%</span>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                  
+                  {/* Actions (Anchored to bottom) */}
+                  <div className="grid grid-cols-2 gap-3 mt-auto">
+                    <button
+                      onClick={() => openVideoPlayer(module.id)}
+                      disabled={moduleLocked}
+                      className={`py-3 rounded-xl font-bold text-xs transition-all flex items-center justify-center gap-1.5 ${moduleLocked ? 'bg-gray-100 text-gray-400' : 'bg-gray-900 text-white hover:bg-gray-800 shadow-md hover:shadow-lg'}`}
+                    >
+                      <PlayCircle className="w-3.5 h-3.5" /> {t('startVideosBtn')}
+                    </button>
+
+                    <button
+                      onClick={() => onOpenModal('enroll')}
+                      disabled={!testUnlocked || moduleLocked}
+                      className={`py-3 rounded-xl font-bold text-xs transition-all flex items-center justify-center gap-1.5 ${!testUnlocked || moduleLocked ? 'bg-gray-100 text-gray-400' : 'bg-gradient-to-r from-green-500 to-emerald-500 text-white shadow-md hover:shadow-lg'}`}
+                    >
+                      {testUnlocked && moduleProgress[module.id].testCompleted ? (
+                        <><CheckCircle className="w-3.5 h-3.5" /> {t('testCompletedBtn')}</>
+                      ) : (
+                        <><Target className="w-3.5 h-3.5" /> {t('takeTestBtn')}</>
                       )}
-                    </div>
-
-                    <div className="grid md:grid-cols-2 gap-4 sm:gap-6">
-                      {/* Topics Covered */}
-                      <div>
-                        <h4 className="text-base sm:text-lg font-bold text-gray-900 mb-3 flex items-center gap-2">
-                          <BookOpen className="w-4 h-4 sm:w-5 sm:h-5 text-orange-500" />
-                          {t('topicsCovered')}
-                        </h4>
-                        <div className="space-y-2">
-                          {module.topics.map((topic: string, idx: number) => (
-                            <div key={idx} className="flex items-start gap-2">
-                              <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
-                              <span className="text-gray-700">{topic.replace(/\s*\(.*?\)/g, '')}</span>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Test Information */}
-                      <div>
-                        <h4 className="text-base sm:text-lg font-bold text-gray-900 mb-2 sm:mb-3 flex items-center gap-2">
-                          <Target className="w-4 h-4 sm:w-5 sm:h-5 text-red-500" />
-                          {t('testDetailsTitle')}
-                        </h4>
-                        <div className={`bg-gradient-to-br ${testUnlocked ? 'from-green-50 to-blue-50' : 'from-gray-100 to-gray-200'} rounded-xl p-3 sm:p-4 space-y-2 sm:space-y-3 relative`}>
-                          {!testUnlocked && (
-                            <div className="absolute inset-0 bg-gray-900/20 backdrop-blur-sm rounded-xl flex items-center justify-center">
-                              <div className="text-center p-4">
-                                <Lock className="w-8 h-8 sm:w-10 sm:h-10 text-gray-600 mx-auto mb-1" />
-                                <p className="font-bold text-sm text-gray-700">{t('testLocked')}</p>
-                                <p className="text-xs sm:text-sm text-gray-600">{t('completeAllVideosToUnlock')}</p>
-                              </div>
-                            </div>
-                          )}
-
-                          <div className="flex justify-between items-center text-sm sm:text-base">
-                            <span className="text-gray-600">{t('questionsLabel')}</span>
-                            <span className="font-bold text-gray-900">{module.testInfo.questions}</span>
-                          </div>
-                          <div className="flex justify-between items-center text-sm sm:text-base">
-                            <span className="text-gray-600">{t('durationLabel')}</span>
-                            <span className="font-bold text-gray-900">{module.testInfo.duration}</span>
-                          </div>
-                          <div className="flex justify-between items-center text-sm sm:text-base">
-                            <span className="text-gray-600">{t('passingScoreLabel')}</span>
-                            <span className="font-bold text-green-600">{module.testInfo.passingScore}%</span>
-                          </div>
-
-                          {moduleProgress[module.id].testCompleted && (
-                            <div className="pt-3 sm:pt-4 border-t border-gray-300">
-                              <div className="flex justify-between items-center">
-                                <span className="text-sm sm:text-base text-gray-600">{t('yourScoreLabel')}</span>
-                                <span className={`font-bold text-lg sm:text-xl ${moduleProgress[module.id].testScore >= 70 ? 'text-green-600' : 'text-red-600'}`}>
-                                  {moduleProgress[module.id].testScore}%
-                                </span>
-                              </div>
-                            </div>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="mt-6 grid sm:grid-cols-2 gap-3 sm:gap-4">
-                      <button
-                        onClick={() => openVideoPlayer(module.id)}
-                        disabled={moduleLocked}
-                        className={`bg-gradient-to-r ${module.color} text-white py-3 sm:py-4 rounded-xl font-bold text-sm sm:text-lg transition-all ${moduleLocked ? 'opacity-50 cursor-not-allowed' : 'hover:shadow-lg hover:scale-[1.02]'
-                          }`}
-                      >
-                        {moduleLocked ? (
-                          <span className="flex items-center justify-center gap-2">
-                            <Lock className="w-4 h-4 sm:w-5 sm:h-5" />
-                            {t('lockedShort')}
-                          </span>
-                        ) : (
-                          <span className="flex items-center justify-center gap-2">
-                            <PlayCircle className="w-4 h-4 sm:w-5 sm:h-5" />
-                            {t('startVideosBtn')} - {completedCount}/{module.totalVideos}
-                          </span>
-                        )}
-                      </button>
-
-                      <button
-                        onClick={() => onOpenModal('enroll')}
-                        disabled={!testUnlocked || moduleLocked}
-                        className={`bg-gradient-to-r from-green-500 to-blue-500 text-white py-3 sm:py-4 rounded-xl font-bold text-sm sm:text-lg transition-all ${!testUnlocked || moduleLocked ? 'opacity-50 cursor-not-allowed' : 'hover:shadow-lg hover:scale-[1.02]'
-                          }`}
-                      >
-                        {testUnlocked ? (
-                          moduleProgress[module.id].testCompleted ? (
-                            <span className="flex items-center justify-center gap-2">
-                              <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5" />
-                              {t('testCompletedBtn')}
-                            </span>
-                          ) : (
-                            <span className="flex items-center justify-center gap-2">
-                              <Target className="w-4 h-4 sm:w-5 sm:h-5" />
-                              {t('takeTestBtn')}
-                            </span>
-                          )
-                        ) : (
-                          <span className="flex items-center justify-center gap-2">
-                            <Lock className="w-4 h-4 sm:w-5 sm:h-5" />
-                            {t('testLockedBtn')}
-                          </span>
-                        )}
-                      </button>
-                    </div>
+                    </button>
                   </div>
                 </div>
               </div>

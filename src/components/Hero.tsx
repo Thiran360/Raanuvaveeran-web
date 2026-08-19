@@ -153,7 +153,7 @@ export default function Hero({ onOpenModal }: HeroProps) {
                   </button>
 
                   <button
-                    onClick={() => navigate("/courses?demo=true")}
+                    onClick={() => onOpenModal('demo_video')}
                     className="px-8 py-4 rounded-full font-bold text-lg border-2 border-indigo-400/30 bg-indigo-950/50 backdrop-blur
                       hover:bg-indigo-900/50 hover:border-cyan-400/50 text-indigo-100 transition flex items-center gap-3 justify-center"
                   >

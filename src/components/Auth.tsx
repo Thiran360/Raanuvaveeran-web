@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { CheckCircle2, X } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
-const API_BASE = "https://concise-egomaniac-starved.ngrok-free.dev/military";
+const API_BASE = "https://api.codingboss.in/military";
 
 // --------------------------------------------------
 // Permanent Device ID Function (Keep This)
