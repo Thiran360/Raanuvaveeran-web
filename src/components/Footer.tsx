@@ -176,7 +176,7 @@ export default function Footer() {
             <p className="text-gray-400 text-sm">
               {t('copyright')}
             </p>
-            <div className="flex gap-6 text-sm">
+            <div className="flex flex-wrap justify-center md:justify-end gap-3 sm:gap-6 text-xs sm:text-sm">
               <button
                 onClick={() => setActivePolicy('privacy')}
                 className="text-gray-400 hover:text-orange-400 transition-colors cursor-pointer"

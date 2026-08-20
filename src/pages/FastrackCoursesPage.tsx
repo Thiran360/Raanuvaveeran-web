@@ -187,7 +187,7 @@ export default function FastrackCoursesPage({ onOpenModal }: FastrackCoursesPage
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.1, type: "spring" }}
-              className="text-5xl sm:text-6xl md:text-7xl font-black text-slate-900 tracking-tight leading-[1.1]"
+              className="text-3xl xs:text-4xl sm:text-6xl md:text-7xl font-black text-slate-900 tracking-tight leading-[1.15]"
             >
               28-Day Fast-Track <br/>
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-purple-600 to-rose-500">
@@ -199,10 +199,10 @@ export default function FastrackCoursesPage({ onOpenModal }: FastrackCoursesPage
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="relative inline-block"
+              className="relative inline-block w-full max-w-3xl"
             >
               <div className="absolute -inset-1 bg-gradient-to-r from-indigo-100 to-purple-100 rounded-2xl blur-lg opacity-60"></div>
-              <p className="relative text-xl sm:text-2xl text-slate-700 font-medium leading-relaxed max-w-3xl mx-auto glass-card px-8 py-6 rounded-2xl">
+              <p className="relative text-base sm:text-2xl text-slate-700 font-medium leading-relaxed max-w-3xl mx-auto glass-card px-4 py-4 sm:px-8 sm:py-6 rounded-2xl">
                 “{isTa 
                   ? "28 நாட்களில் Hindi-யை புரிந்து கொண்டு, தயக்கமின்றி பேசும் அளவிற்கு பயிற்சி!" 
                   : "Understand and speak Hindi fluently without hesitation in just 28 Days!"}”
@@ -213,14 +213,14 @@ export default function FastrackCoursesPage({ onOpenModal }: FastrackCoursesPage
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.5 }}
-              className="flex flex-col sm:flex-row items-center justify-center gap-6 pt-8"
+              className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 pt-6 sm:pt-8"
             >
               <button
                 onClick={() => onOpenModal("enroll")}
-                className="w-full sm:w-auto bg-slate-900 text-white px-10 py-4 rounded-full font-bold text-lg hover:bg-indigo-600 transition-all transform hover:scale-105 shadow-xl shadow-indigo-600/20 flex items-center justify-center gap-3 group"
+                className="w-full sm:w-auto bg-slate-900 text-white px-6 sm:px-10 py-3.5 sm:py-4 rounded-full font-bold text-base sm:text-lg hover:bg-indigo-600 transition-all transform hover:scale-105 shadow-xl shadow-indigo-600/20 flex items-center justify-center gap-3 group"
               >
-                <PhoneCall className="w-5 h-5 group-hover:rotate-12 transition-transform" />
-                {t('enrollNowPrice') || "Book Your Slot"}
+                <PhoneCall className="w-5 h-5 group-hover:rotate-12 transition-transform shrink-0" />
+                <span>{isTa ? "இப்போதே சேருங்கள் - ₹19,999" : "Enroll Now - ₹19,999"}</span>
               </button>
               
               <div className="flex items-center gap-5 text-sm font-medium text-slate-500">

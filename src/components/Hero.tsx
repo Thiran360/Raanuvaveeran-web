@@ -95,7 +95,7 @@ export default function Hero({ onOpenModal }: HeroProps) {
 
               {/* Heading */}
               <AnimatedSection delay={200}>
-                <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-tight tracking-tight">
+                <h1 className="text-3xl xs:text-4xl sm:text-6xl lg:text-7xl font-extrabold leading-tight tracking-tight">
                   {t('heroTitle1')}
                   <br />
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-fuchsia-400 to-purple-400 animate-pulse">
@@ -106,14 +106,14 @@ export default function Hero({ onOpenModal }: HeroProps) {
 
               {/* Description - Updated Text */}
               <AnimatedSection delay={400}>
-                <p className="text-lg text-indigo-200/90 max-w-xl leading-relaxed">
+                <p className="text-base sm:text-lg text-indigo-200/90 max-w-xl leading-relaxed">
                   {t('heroDesc')}
                 </p>
               </AnimatedSection>
 
               {/* Features - Modern Glass Look */}
               <AnimatedSection delay={600}>
-                <div className="grid sm:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                   {[
                     { text: t('heroFeature1'), icon: Target },
                     { text: t('heroFeature2'), icon: Users },
@@ -124,10 +124,10 @@ export default function Hero({ onOpenModal }: HeroProps) {
                       key={i}
                       className="flex items-center gap-3 p-3 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm"
                     >
-                      <div className="p-2 rounded-lg bg-gradient-to-br from-cyan-500/20 to-purple-500/20">
+                      <div className="p-2 rounded-lg bg-gradient-to-br from-cyan-500/20 to-purple-500/20 shrink-0">
                         <Icon className="w-5 h-5 text-cyan-300" />
                       </div>
-                      <span className="font-medium text-white/90">{text}</span>
+                      <span className="font-medium text-xs sm:text-sm text-white/90 leading-snug">{text}</span>
                     </div>
                   ))}
                 </div>
@@ -135,13 +135,13 @@ export default function Hero({ onOpenModal }: HeroProps) {
 
               {/* Buttons - Modern Gradients */}
               <AnimatedSection delay={800}>
-                <div className="flex flex-col sm:flex-row gap-5">
+                <div className="flex flex-col sm:flex-row gap-4 sm:gap-5">
                   <button
                     onClick={() => navigate("/courses")}
                     className="
                       group
-                      px-8 py-4 rounded-full font-bold text-lg
-                    bg-gradient-to-r from-cyan-500 to-purple-600
+                      px-6 sm:px-8 py-3.5 sm:py-4 rounded-full font-bold text-base sm:text-lg
+                      bg-gradient-to-r from-cyan-500 to-purple-600
                       hover:from-cyan-400 hover:to-purple-500
                       text-white shadow-lg shadow-purple-500/25
                       transition-all hover:scale-[1.02] active:scale-[0.98]
@@ -154,7 +154,7 @@ export default function Hero({ onOpenModal }: HeroProps) {
 
                   <button
                     onClick={() => onOpenModal('demo_video')}
-                    className="px-8 py-4 rounded-full font-bold text-lg border-2 border-indigo-400/30 bg-indigo-950/50 backdrop-blur
+                    className="px-6 sm:px-8 py-3.5 sm:py-4 rounded-full font-bold text-base sm:text-lg border-2 border-indigo-400/30 bg-indigo-950/50 backdrop-blur
                       hover:bg-indigo-900/50 hover:border-cyan-400/50 text-indigo-100 transition flex items-center gap-3 justify-center"
                   >
                     <Play className="w-5 h-5 text-cyan-400 fill-cyan-400/20" />{" "}
@@ -165,17 +165,17 @@ export default function Hero({ onOpenModal }: HeroProps) {
 
               {/* Metrics - Modern Colors & Labels */}
               <AnimatedSection delay={1000}>
-                <div className="grid grid-cols-3 gap-8 pt-8 border-t border-white/10">
+                <div className="grid grid-cols-3 gap-2 xs:gap-4 sm:gap-8 pt-8 border-t border-white/10">
                   {[
                     { value: t('heroStat1Value'), label: t('heroStat1Label') },
                     { value: t('heroStat2Value'), label: t('heroStat2Label') },
                     { value: t('heroStat3Value'), label: t('heroStat3Label') },
                   ].map((m, i) => (
-                    <div key={i}>
-                      <div className="text-3xl sm:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-purple-300">
+                    <div key={i} className="text-center sm:text-left">
+                      <div className="text-2xl xs:text-3xl sm:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-purple-300">
                         {m.value}
                       </div>
-                      <div className="text-sm font-semibold uppercase tracking-wider text-indigo-300 mt-1">
+                      <div className="text-[10px] xs:text-xs sm:text-sm font-semibold uppercase tracking-wider text-indigo-300 mt-1 leading-tight">
                         {m.label}
                       </div>
                     </div>

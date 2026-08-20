@@ -515,7 +515,7 @@ const HindiLearningChat: React.FC = () => {
       {isOpen && (
         <div
           className={`bg-white rounded-2xl shadow-2xl flex flex-col transition-all duration-300 overflow-hidden border border-gray-100 ${
-            isMinimized ? 'h-16' : 'h-[520px] md:h-[600px]'
+            isMinimized ? 'h-16' : 'h-[520px] max-h-[85vh] md:h-[600px]'
           } w-[calc(100vw-2rem)] md:w-[400px] fixed bottom-4 right-4 md:relative`}
           style={{ boxShadow: '0 25px 60px -12px rgba(128, 0, 255, 0.25), 0 0 0 1px rgba(0,0,0,0.05)' }}
         >

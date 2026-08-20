@@ -41,13 +41,13 @@ export default function Header() {
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20 gap-4">
             {/* Logo */}
-            <Link to="/" className="flex items-center gap-3 flex-shrink-0">
+            <Link to="/" className="flex items-center gap-2 sm:gap-3 shrink min-w-0">
               <img
                 src="/indian-flag.jpg"
                 alt="Raanuva Veeran Logo"
-                className="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 object-contain transition-transform duration-300 hover:scale-105 rounded-lg"
+                className="w-10 h-10 sm:w-14 sm:h-14 lg:w-16 lg:h-16 object-contain transition-transform duration-300 hover:scale-105 rounded-lg shrink-0"
               />
-              <span className={`font-bold text-white tracking-wide ${language === 'ta' ? 'text-sm sm:text-base' : 'text-lg sm:text-xl'}`}>
+              <span className={`font-bold text-white tracking-wide truncate ${language === 'ta' ? 'text-xs xs:text-sm sm:text-base max-w-[130px] xs:max-w-[200px] sm:max-w-none' : 'text-sm sm:text-xl max-w-[160px] xs:max-w-none'}`}>
                 {t('heroTitle1')}
               </span>
             </Link>
@@ -205,7 +205,7 @@ export default function Header() {
 
           {/* Mobile Menu */}
           {isMenuOpen && (
-            <div className="md:hidden py-4 border-t border-purple-700/40 animate-fade-in">
+            <div className="xl:hidden py-4 border-t border-purple-700/40 animate-fade-in max-h-[85vh] overflow-y-auto custom-scrollbar">
               <nav className="flex flex-col gap-4 text-white">
                 <Link
                   to="/"

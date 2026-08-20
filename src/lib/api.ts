@@ -16,7 +16,8 @@ export const MANPOWER_ENDPOINTS = {
   bill_records: `${API_BASE}/bill-records/`,
   payout: `${API_BASE}/payout/`,
   expenses: `${API_BASE}/expenses/`,
-  balance_sheet: `${API_BASE}/balance-sheet/`
+  balance_sheet: `${API_BASE}/balance-sheet/`,
+  gallery: `${API_BASE}/gallery/`
 };
 
 const normalizeApiUrl = (url: string | Request | URL): string | Request | URL => {
@@ -487,5 +488,28 @@ export const apiService = {
       method: "DELETE",
       headers: { "ngrok-skip-browser-warning": "true" }
     });
+  },
+
+  // Gallery Endpoint
+  getGallery: async (): Promise<{ id: number; image_url: string; title?: string; category?: string }[]> => {
+    try {
+      const res = await apiFetch(MANPOWER_ENDPOINTS.gallery);
+      if (!res.ok) return [];
+      const data = await res.json();
+      const list = extractArray(data);
+      return list.map((item: any, idx: number) => {
+        const rawUrl = item.image_url || item.url || item.image || item.src || "";
+        const formattedUrl = rawUrl ? rawUrl.trim().replace(/ /g, "%20") : "";
+        return {
+          id: item.id || idx,
+          image_url: formattedUrl,
+          title: item.title || item.name || `Gallery Image ${idx + 1}`,
+          category: item.category || "Events"
+        };
+      }).filter((img: any) => Boolean(img.image_url) && Number(img.id) !== 61 && Number(img.id) !== 54);
+    } catch (err) {
+      console.error("Error fetching gallery:", err);
+      return [];
+    }
   }
 };
