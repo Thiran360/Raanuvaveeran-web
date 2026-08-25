@@ -40,7 +40,7 @@ const knowledgeBase = {
 
   support: {
     contact: `📞 **Contact Information**\n\n📧 Email: info@gmail.com\n📞 Phone: +91 6397 255 377\n📍 Main Office: 22, Krishnasamy Street, near Zeon Cinema, Vandipettai, Gobichettipalayam - 638476\n\n🕘 Office Hours:\nMonday - Friday: 9:00 AM - 6:00 PM\nSaturday: 10:00 AM - 4:00 PM\nSunday: Closed\n\n⚡ Average response time: Less than 2 hours!`,
-    offices: `📍 **Our Office Locations**\n\n🏢 **Tamil Nadu (HQ)**\n22, Krishnasamy Street, near Zeon Cinema, Vandipettai, Gobichettipalayam - 638476\n\n🏢 **Mumbai**\n456 Bandra West, Mumbai - 400050\n\n🏢 **Bangalore**\n789 Koramangala, Bangalore - 560034\n\nAll offices: Mon-Sat, 9AM-6PM`,
+    offices: `📍 **Our Office Locations**\n\n🏢 **Tamil Nadu (HQ)**\n22, Krishnasamy Street, near Zeon Cinema, Vandipettai, Gobichettipalayam - 638476\n\n🏢 **Kovai**\nGarden City, 3rd floor, Nagaraja Puram to perur road, Nagaraja Puram, Vedapatti, Coimbatore 641007\n\n🏢 **Bangalore**\n789 Koramangala, Bangalore - 560034\n\nAll offices: Mon-Sat, 9AM-6PM`,
     technical: `🔧 **Technical Support**\n\nHaving technical issues? Here are some common fixes:\n\n• **Video not playing?** Check your internet connection and try refreshing the page\n• **Can't login?** Clear your browser cache or try a different browser\n• **Audio issues?** Check your device volume and browser audio permissions\n• **App not loading?** Make sure JavaScript is enabled\n\nStill stuck? Contact us:\n📧 info@gmail.com\n📞 +91 6397 255 377`,
   },
 
@@ -179,7 +179,7 @@ const intentPatterns: { keywords: string[]; intent: string; response: string; qu
   },
   // Office locations
   {
-    keywords: ['office', 'location', 'branch', 'visit', 'tamil nadu', 'mumbai', 'bangalore', 'bengaluru', 'direction', 'address'],
+    keywords: ['office', 'location', 'branch', 'visit', 'tamil nadu', 'kovai', 'coimbatore', 'bangalore', 'bengaluru', 'direction', 'address'],
     intent: 'offices',
     response: knowledgeBase.support.offices,
     quickReplies: ['📞 Contact Info', '📚 Course Overview'],

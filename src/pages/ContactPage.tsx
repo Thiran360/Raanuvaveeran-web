@@ -8,8 +8,8 @@ const getContactMethods = (t: any) => [
     icon: Mail,
     title: t('emailUsTitle'),
     description: t('emailUsDesc'),
-    value: 'info@gmail.com',
-    link: 'mailto:info@gmail.com',
+    value: 'info@raanuvaveeranspokenhindiacademy.com',
+    link: 'mailto:info@raanuvaveeranspokenhindiacademy.com',
     color: 'bg-orange-100',
     iconColor: 'text-orange-500'
   },
@@ -72,21 +72,21 @@ const getOfficeLocations = (t: any) => [
     city: t('locCity1'),
     address: t('locAddress1'),
     phone: '+91 63972 55377 / +91 70108 17113',
-    email: 'info@gmail.com',
+    email: 'info@raanuvaveeranspokenhindiacademy.com',
     hours: t('locHours')
   },
   {
     city: t('locCity2'),
     address: t('locAddress2'),
-    phone: '+91 98765 43211',
-    email: 'info@gmail.com',
+    phone: '+91 63972 55377 ',
+    email: 'info@raanuvaveeranspokenhindiacademy.com',
     hours: t('locHours')
   },
   {
     city: t('locCity3'),
     address: t('locAddress3'),
-    phone: '+91 98765 43212',
-    email: 'info@gmail.com',
+    phone: '+91 70108 17113',
+    email: 'info@raanuvaveeranspokenhindiacademy.com',
     hours: t('locHours')
   }
 ];
@@ -296,7 +296,7 @@ export default function ContactPage() {
                   </div>
                   <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">{method.title}</h3>
                   <p className="text-sm sm:text-base text-gray-600 mb-3">{method.description}</p>
-                  <a href={method.link} className={`${method.iconColor} font-semibold hover:underline text-sm sm:text-base`}>
+                  <a href={method.link} className={`${method.iconColor} font-semibold hover:underline text-sm sm:text-base break-all`}>
                     {method.value}
                   </a>
                 </div>
@@ -617,9 +617,9 @@ export default function ContactPage() {
                       <Phone className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400 flex-shrink-0" />
                       {location.phone}
                     </p>
-                    <p className="flex items-center gap-2">
-                      <Mail className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400 flex-shrink-0" />
-                      {location.email}
+                    <p className="flex items-start gap-2">
+                      <Mail className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400 flex-shrink-0 mt-1" />
+                      <span className="break-all">{location.email}</span>
                     </p>
                     <p className="flex items-center gap-2">
                       <Clock className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400 flex-shrink-0" />

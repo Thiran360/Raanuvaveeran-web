@@ -30,8 +30,20 @@ export default function GalleryPage() {
     const fetchGallery = async () => {
       setLoading(true);
       try {
-        const data = await apiService.getGallery();
-        setImages(data.filter(item => Number(item.id) !== 61 && Number(item.id) !== 54));
+        const response = await fetch('https://3ff5-103-175-108-111.ngrok-free.app/military/gallery/', {
+          headers: {
+            'ngrok-skip-browser-warning': 'true'
+          }
+        });
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const jsonResponse = await response.json();
+        
+        // Ensure we are filtering over the array which is inside the 'data' property
+        const imagesArray = Array.isArray(jsonResponse.data) ? jsonResponse.data : [];
+        
+        setImages(imagesArray.filter((item: GalleryItem) => Number(item.id) !== 61 && Number(item.id) !== 54));
       } catch (err) {
         console.error("Failed to load gallery:", err);
       } finally {

@@ -134,19 +134,19 @@ export default function Footer() {
               <li className="flex items-center gap-2 text-gray-400">
                 <Mail className="w-5 h-5 text-orange-400" />
                 <a
-                  href="https://mail.google.com/mail/?view=cm&fs=1&to=info@gmail.com"
+                  href="https://mail.google.com/mail/?view=cm&fs=1&to=info@raanuvaveeranspokenhindiacademy.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-orange-400 transition-colors"
+                  className="hover:text-orange-400 transition-colors break-all"
                 >
-                  Gmail
+                  info@raanuvaveeranspokenhindiacademy.com
                 </a>
               </li>
 
               <li className="flex items-center gap-2 text-gray-400">
                 <Phone className="w-5 h-5 text-orange-400" />
                 <a href="tel:07010817113" className="hover:text-orange-400 transition-colors">
-                  06397 255 377 / 070108 17113
+                  6397 255 377 / 70108 17113
                 </a>
               </li>
               <li className="flex items-center gap-2 text-gray-400">
