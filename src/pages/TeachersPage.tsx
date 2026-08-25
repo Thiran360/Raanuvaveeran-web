@@ -49,18 +49,15 @@ export default function TeachersPage() {
         {/* Profile Header */}
         <AnimatedSection direction="up" className="grid md:grid-cols-12 gap-12 items-center mb-24">
           <div className="md:col-span-5 relative">
-            <div className="aspect-square rounded-3xl overflow-hidden shadow-2xl relative">
+            <div className="aspect-[4/5] sm:aspect-square rounded-3xl overflow-hidden shadow-2xl relative border-4 border-orange-100">
               <img 
                 src="/teacher-profile-new.jpg" 
                 alt="Mr Surendar J" 
-                className="w-full h-full object-cover"
-                onError={(e) => {
-                  (e.target as HTMLImageElement).src = 'https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=800';
-                }}
+                className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none"></div>
               <div className="absolute bottom-6 left-6 right-6 text-white">
-                <div className="inline-flex items-center gap-2 bg-orange-500 text-white text-xs font-bold px-3 py-1 rounded-full mb-3 uppercase tracking-wider">
+                <div className="inline-flex items-center gap-2 bg-orange-500 text-white text-xs font-bold px-3 py-1 rounded-full mb-3 uppercase tracking-wider shadow-lg">
                   <Award className="w-4 h-4" /> {t('tutorArmyVeteran')}
                 </div>
               </div>

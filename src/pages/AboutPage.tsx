@@ -129,13 +129,15 @@ export default function AboutPage() {
             </p>
           </div>
           <div className={`relative ${storyInView ? 'animate-fade-right' : 'opacity-0'}`}>
-            <img
-              src="/about-hero.jpg"
-              alt="Academy Director"
-              className="rounded-2xl shadow-2xl w-full h-auto object-contain"
-            />
-            <div className="absolute -bottom-4 sm:-bottom-6 -right-4 sm:-right-6 bg-white rounded-2xl p-4 sm:p-6 shadow-xl">
-              <div className="text-3xl sm:text-4xl font-bold text-orange-500">50k+</div>
+            <div className="aspect-[4/5] sm:aspect-square rounded-3xl overflow-hidden shadow-2xl relative border-4 border-orange-100">
+              <img
+                src="/about-hero.jpg"
+                alt="Academy Director"
+                className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500"
+              />
+            </div>
+            <div className="absolute -bottom-4 sm:-bottom-6 -right-4 sm:-right-6 bg-white rounded-2xl p-4 sm:p-6 shadow-xl border border-orange-100 z-10">
+              <div className="text-3xl sm:text-4xl font-bold text-orange-500">3k+</div>
               <div className="text-sm sm:text-base text-gray-600 font-medium">{t('happyStudents')}</div>
             </div>
           </div>
@@ -215,7 +217,7 @@ export default function AboutPage() {
           <h2 className={`text-3xl sm:text-4xl font-bold text-gray-900 mb-6 ${impactInView ? 'animate-fade-down' : 'opacity-0'}`}>{t('impactTitle')}</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-8">
             <div className={`bg-white rounded-2xl p-4 sm:p-6 shadow-lg ${impactInView ? 'animate-fade-up' : 'opacity-0'}`}>
-              <div className="text-3xl sm:text-4xl font-bold text-orange-500 mb-2">50,000+</div>
+              <div className="text-3xl sm:text-4xl font-bold text-orange-500 mb-2">3000+</div>
               <div className="text-sm sm:text-base text-gray-600 font-medium">{t('studentsEnrolled')}</div>
             </div>
             <div className={`bg-white rounded-2xl p-4 sm:p-6 shadow-lg ${impactInView ? 'animate-fade-up' : 'opacity-0'}`}

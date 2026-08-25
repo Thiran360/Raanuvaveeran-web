@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { UserPlus, Users, Search, Mail, Phone, Key, Plus, X, Loader2, CheckCircle2, Trash2 } from "lucide-react";
 import { useLanguage } from "../../context/LanguageContext";
 
-const API_BASE = "https://api.codingboss.in/military";
+const API_BASE = "https://7cfe-103-175-108-111.ngrok-free.app/military";
 
 export default function UserManagementTab() {
   const { t } = useLanguage();

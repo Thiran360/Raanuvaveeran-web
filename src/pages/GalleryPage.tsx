@@ -30,20 +30,8 @@ export default function GalleryPage() {
     const fetchGallery = async () => {
       setLoading(true);
       try {
-        const response = await fetch('https://3ff5-103-175-108-111.ngrok-free.app/military/gallery/', {
-          headers: {
-            'ngrok-skip-browser-warning': 'true'
-          }
-        });
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const jsonResponse = await response.json();
-        
-        // Ensure we are filtering over the array which is inside the 'data' property
-        const imagesArray = Array.isArray(jsonResponse.data) ? jsonResponse.data : [];
-        
-        setImages(imagesArray.filter((item: GalleryItem) => Number(item.id) !== 61 && Number(item.id) !== 54));
+        const data = await apiService.getGallery();
+        setImages(data);
       } catch (err) {
         console.error("Failed to load gallery:", err);
       } finally {
@@ -71,7 +59,7 @@ export default function GalleryPage() {
   return (
     <div className="min-h-screen bg-slate-50 pt-24 pb-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Header Section */}
         <div className="text-center mb-16 animate-fade-in-up">
           <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-6 tracking-tight">
@@ -111,20 +99,20 @@ export default function GalleryPage() {
               const isSideways = rotation === 90 || rotation === 270;
 
               return (
-                <div 
-                  key={imgId} 
+                <div
+                  key={imgId}
                   className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 aspect-[4/3] bg-slate-900 border border-slate-800 cursor-pointer flex items-center justify-center p-2"
                   onClick={() => setSelectedImage({ url: img.image_url, id: imgId })}
                   style={{ animationDelay: `${index * 50}ms` }}
                 >
                   <div className="w-full h-full flex items-center justify-center overflow-hidden">
-                    <img 
-                      src={img.image_url} 
-                      alt={img.title || `Gallery ${index + 1}`} 
+                    <img
+                      src={img.image_url}
+                      alt={img.title || `Gallery ${index + 1}`}
                       referrerPolicy="no-referrer"
                       className="max-w-full max-h-full object-contain transition-all duration-500 ease-in-out group-hover:scale-105"
-                      style={{ 
-                        transform: `rotate(${rotation}deg) ${isSideways ? 'scale(1.35)' : 'scale(1)'}` 
+                      style={{
+                        transform: `rotate(${rotation}deg) ${isSideways ? 'scale(1.35)' : 'scale(1)'}`
                       }}
                       loading="lazy"
                       onError={(e) => {
@@ -174,18 +162,18 @@ export default function GalleryPage() {
               <span>{language === 'ta' ? 'சுழற்று (90°)' : 'Rotate 90°'}</span>
             </button>
 
-            <button 
+            <button
               onClick={() => setSelectedImage(null)}
               className="p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
             >
               <X className="w-7 h-7" />
             </button>
           </div>
-          
+
           <div className="max-w-full max-h-[85vh] p-4 flex items-center justify-center overflow-hidden">
-            <img 
-              src={selectedImage.url} 
-              alt="Enlarged" 
+            <img
+              src={selectedImage.url}
+              alt="Enlarged"
               referrerPolicy="no-referrer"
               className="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl transition-all duration-500 ease-in-out"
               style={{ transform: `rotate(${rotations[selectedImage.id] || 0}deg)` }}

@@ -86,7 +86,7 @@ export default function Header() {
                   onClick={(e) => {
                     if (isLiveActive) {
                       e.preventDefault();
-                      const liveLink = localStorage.getItem('liveMeetingLink') || 'https://api.codingboss.in/military/live';
+                      const liveLink = localStorage.getItem('liveMeetingLink') || 'https://7cfe-103-175-108-111.ngrok-free.app/military/live';
                       window.open(liveLink, '_blank');
                     }
                   }}
@@ -274,7 +274,7 @@ export default function Header() {
                       setIsMenuOpen(false);
                       if (isLiveActive) {
                         e.preventDefault();
-                        const liveLink = localStorage.getItem('liveMeetingLink') || 'https://api.codingboss.in/military/live';
+                        const liveLink = localStorage.getItem('liveMeetingLink') || 'https://7cfe-103-175-108-111.ngrok-free.app/military/live';
                         window.open(liveLink, '_blank');
                       }
                     }}

@@ -2,7 +2,7 @@ import {
   Engineer, Site, Worker, Advance
 } from "../types";
 
-const API_BASE = "https://api.codingboss.in/military";
+const API_BASE = "https://7cfe-103-175-108-111.ngrok-free.app/military";
 
 export const MANPOWER_ENDPOINTS = {
   engineers: `${API_BASE}/owners/`,
@@ -506,7 +506,7 @@ export const apiService = {
           title: item.title || item.name || `Gallery Image ${idx + 1}`,
           category: item.category || "Events"
         };
-      }).filter((img: any) => Boolean(img.image_url) && Number(img.id) !== 61 && Number(img.id) !== 54);
+      }).filter((img: any) => Boolean(img.image_url));
     } catch (err) {
       console.error("Error fetching gallery:", err);
       return [];

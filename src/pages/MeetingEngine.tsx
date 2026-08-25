@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { ZegoUIKitPrebuilt } from '@zegocloud/zego-uikit-prebuilt';
 import { Video, Users, Loader2, ArrowLeft, ShieldCheck, Play, Copy, Share2 } from 'lucide-react';
 
-const API_BASE_URL = 'https://api.codingboss.in';
+const API_BASE_URL = 'https://7cfe-103-175-108-111.ngrok-free.app';
 
 export default function MeetingEngine() {
   const locationParams = new URLSearchParams(window.location.search);

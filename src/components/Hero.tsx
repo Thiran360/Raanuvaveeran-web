@@ -195,7 +195,7 @@ export default function Hero({ onOpenModal }: HeroProps) {
                     <img
                       key={src}
                       src={src}
-                      className={`absolute inset-0 w-full h-full object-cover transition-all duration-1000 ease-in-out transform ${index === currentImageIndex
+                      className={`absolute inset-0 w-full h-full object-cover object-top transition-all duration-1000 ease-in-out transform ${index === currentImageIndex
                         ? "opacity-100 scale-100"
                         : "opacity-0 scale-110"
                         }`}
